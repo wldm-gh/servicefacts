@@ -50,6 +50,12 @@ python tools/check-profile.py docs/legal/legal.jsonld
 
 Edit the term lists in `build/legal.py`, never the generated files in `docs/`. The checker must report 0 terms that do not exist or do not fit, and 0 custom terms with broken references.
 
+After each release, test that every term URL resolves, for a browser and for a JSON-LD client:
+
+```
+python tools/test-term-urls.py
+```
+
 ## Contribute
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [GOVERNANCE.md](GOVERNANCE.md). Changes are listed in [CHANGELOG.md](CHANGELOG.md).
