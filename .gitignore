@@ -1,0 +1,5 @@
+.claude/
+.gh-account
+__pycache__/
+*.pyc
+.cf-account

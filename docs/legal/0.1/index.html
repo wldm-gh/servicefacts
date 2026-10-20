@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legal services vocabulary v0.1 | Service Facts</title>
+<meta name="description" content="Extra schema.org terms for law firms: who they act for, fees, dispute processes, forums, governing law and legal time limits.">
+<link rel="alternate" type="application/ld+json" href="legal.jsonld">
+<link rel="alternate" type="text/turtle" href="legal.ttl">
+<style>
+:root{--dark:#2A2B29;--lime:#E1FF01;--muted:#6E7681;--cream:#EEEADE;--line:#CCCCCC;--alt:#F5F4EE;--code:#F0F3F6}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--dark);font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+main{max-width:980px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.9rem;line-height:1.2;margin:.2em 0 .1em}
+h2{font-size:1.35rem;margin:2.2em 0 .6em;padding-bottom:.25em;border-bottom:3px solid var(--lime)}
+h3{font-size:1.1rem;margin:1.6em 0 .3em}
+a{color:var(--dark)}
+.meta{color:var(--muted);font-size:.95rem}
+.badge{display:inline-block;border:1px solid var(--dark);border-radius:3px;padding:0 6px;font-size:.8rem;margin-left:6px;vertical-align:middle}
+.callout{background:var(--cream);border-left:6px solid var(--lime);padding:14px 18px;margin:18px 0}
+.callout p{margin:.4em 0}
+code,pre{font-family:Consolas,'SFMono-Regular',Menlo,monospace;font-size:.88rem}
+code{background:var(--code);padding:1px 4px;border-radius:3px;overflow-wrap:anywhere}
+pre{background:var(--code);padding:12px 14px;overflow-x:auto;border-radius:4px}
+pre code{background:none;padding:0}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:.93rem}
+th{background:var(--dark);color:#fff;text-align:left;font-weight:600}
+th,td{padding:7px 9px;border:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--alt)}
+.term{border:1px solid var(--line);border-left:6px solid var(--lime);padding:10px 16px;margin:14px 0;scroll-margin-top:12px}
+.term:target,tr:target td{background:var(--cream)}
+.term h3{margin:.2em 0 .4em}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:0}
+dt{color:var(--muted)}
+dd{margin:0}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:.9rem}
+@media (max-width:600px){dl{grid-template-columns:1fr}dt{margin-top:6px}}
+</style>
+</head>
+<body>
+<main>
+
+<p class="meta"><a href="../../">Service Facts</a> / Legal services</p>
+<h1>Legal services vocabulary <span class="badge">v0.1 draft</span></h1>
+<p class="meta">Version 0.1, 2026-10-20. Namespace <code>https://w3id.org/servicefacts/legal#</code>, prefix <code>legal:</code>.
+Files: <a href="legal.jsonld">JSON-LD</a> · <a href="legal.ttl">Turtle</a> · <a href="../">the latest version</a></p>
+<div class="callout"><p>This is the frozen copy of version 0.1. It will not change. See <a href="../">the latest version</a>.</p></div>
+<div class="callout">
+<p><strong>Start here.</strong> schema.org cannot say some things buyers ask a law firm: who the firm acts for, how it charges,
+which process and tribunal a matter goes through, which law governs it, and the legal time limits.
+This vocabulary adds 16 properties, 1 class and 5 value lists for those facts.
+Use standard schema.org first. Use these terms only where schema.org has no home.</p>
+<p><strong>Status: draft.</strong> Version 0.x can still change. Term IDs never change and are never deleted.
+Version 0.1 was built for Australian building and construction law.</p>
+</div>
+
+<h2 id="how-to-use">How to use it on a page</h2>
+<ol>
+<li>Write the prefix inline in <code>@context</code>. Never load a remote context file: if it cannot load, JSON-LD processing stops.</li>
+<li>Write every fact as visible text on the page too, for example in a "Key facts" table. Search engines and AI engines quote text, not hidden markup.</li>
+<li>Where a standard schema.org property can carry part of the fact, publish it as well (see "Also publish as").</li>
+</ol>
+<pre><code>{
+  &quot;@context&quot;: [&quot;https://schema.org&quot;, {&quot;legal&quot;: &quot;https://w3id.org/servicefacts/legal#&quot;}],
+  &quot;@type&quot;: &quot;Service&quot;,
+  &quot;name&quot;: &quot;Security of payment claims&quot;,
+  &quot;audience&quot;: {&quot;@type&quot;: &quot;BusinessAudience&quot;, &quot;audienceType&quot;: &quot;Subcontractors&quot;},
+  &quot;legal:actsFor&quot;: {&quot;@id&quot;: &quot;https://w3id.org/servicefacts/legal#PartyRoles-subcontractor&quot;},
+  &quot;legal:disputeProcess&quot;: {&quot;@id&quot;: &quot;https://w3id.org/servicefacts/legal#DisputeProcesses-adjudication&quot;}
+}</code></pre>
+
+<h2 id="properties">Properties</h2>
+<div class="tablewrap"><table>
+<tr><th>Property</th><th>Goes on</th><th>Value</th><th>Priority</th><th>Buyer question</th></tr>
+<tr><td><a href="#actsFor"><code>legal:actsFor</code></a></td><td>Service, LegalService, Person</td><td>DefinedTerm</td><td>High</td><td>Do you act for subcontractors / homeowners / builders?</td></tr>
+<tr><td><a href="#feeArrangement"><code>legal:feeArrangement</code></a></td><td>Service, Offer</td><td>DefinedTerm</td><td>High</td><td>Is it a fixed fee? Do you charge by the hour? Is the first meeting free?</td></tr>
+<tr><td><a href="#disputeProcess"><code>legal:disputeProcess</code></a></td><td>Service</td><td>DefinedTerm</td><td>High</td><td>Will this go to court? Can it be settled by mediation or adjudication?</td></tr>
+<tr><td><a href="#forum"><code>legal:forum</code></a></td><td>Service</td><td>GovernmentOrganization, Organization</td><td>High</td><td>Which court or tribunal hears this? Who appoints the adjudicator?</td></tr>
+<tr><td><a href="#governingLegislation"><code>legal:governingLegislation</code></a></td><td>Service, DefinedTerm</td><td>Legislation</td><td>High</td><td>Which law covers my situation?</td></tr>
+<tr><td><a href="#hasTimeLimit"><code>legal:hasTimeLimit</code></a></td><td>Service, Legislation, DefinedTerm</td><td>TimeLimit</td><td>High</td><td>How long do I have to respond / to claim / to appeal?</td></tr>
+<tr><td><a href="#appliesToStep"><code>legal:appliesToStep</code></a></td><td>TimeLimit</td><td>DefinedTerm</td><td>High</td><td>(part of a time limit)</td></tr>
+<tr><td><a href="#timeAllowed"><code>legal:timeAllowed</code></a></td><td>TimeLimit</td><td>QuantitativeValue</td><td>High</td><td>(part of a time limit)</td></tr>
+<tr><td><a href="#countedFrom"><code>legal:countedFrom</code></a></td><td>TimeLimit</td><td>DefinedTerm</td><td>High</td><td>(part of a time limit)</td></tr>
+<tr><td><a href="#legalSource"><code>legal:legalSource</code></a></td><td>TimeLimit</td><td>Legislation</td><td>High</td><td>(part of a time limit)</td></tr>
+<tr><td><a href="#consequenceIfMissed"><code>legal:consequenceIfMissed</code></a></td><td>TimeLimit</td><td>Text</td><td>Medium</td><td>What happens if I miss the deadline?</td></tr>
+<tr><td><a href="#typicalDuration"><code>legal:typicalDuration</code></a></td><td>Service</td><td>Duration, QuantitativeValue</td><td>Medium</td><td>How long will it take?</td></tr>
+<tr><td><a href="#matterValueRange"><code>legal:matterValueRange</code></a></td><td>Service</td><td>MonetaryAmount</td><td>Medium</td><td>Do you take small claims? Is my matter big enough?</td></tr>
+<tr><td><a href="#dateAdmitted"><code>legal:dateAdmitted</code></a></td><td>Person, EducationalOccupationalCredential</td><td>Date</td><td>High</td><td>How experienced is the lawyer?</td></tr>
+<tr><td><a href="#contractForm"><code>legal:contractForm</code></a></td><td>Service, LegalService, Person</td><td>CreativeWork</td><td>High</td><td>Can you review my HIA / Master Builders / AS 4000 contract?</td></tr>
+<tr><td><a href="#projectType"><code>legal:projectType</code></a></td><td>Service</td><td>DefinedTerm</td><td>Medium</td><td>Do you handle home builds, renovations, apartments or commercial projects?</td></tr>
+</table></div>
+<div class="term" id="actsFor"><h3><code>legal:actsFor</code></h3>
+<p>A party role the firm or lawyer acts for in this kind of matter. Value from the PartyRoles list.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#actsFor</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a>, <a href="https://schema.org/LegalService"><code>LegalService</code></a>, <a href="https://schema.org/Person"><code>Person</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>Do you act for subcontractors / homeowners / builders?</dd>
+<dt>Also publish as</dt><dd>audience (Audience + audienceType text)</dd>
+</dl></div>
+<div class="term" id="feeArrangement"><h3><code>legal:feeArrangement</code></h3>
+<p>How the firm charges for this kind of matter. Value from the FeeArrangements list.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#feeArrangement</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a>, <a href="https://schema.org/Offer"><code>Offer</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>Is it a fixed fee? Do you charge by the hour? Is the first meeting free?</dd>
+<dt>Also publish as</dt><dd>offers → Offer with price / priceSpecification, when a price is published</dd>
+</dl></div>
+<div class="term" id="disputeProcess"><h3><code>legal:disputeProcess</code></h3>
+<p>A dispute-resolution process the service can use or lead to. Value from the DisputeProcesses list.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#disputeProcess</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>Will this go to court? Can it be settled by mediation or adjudication?</dd>
+
+</dl></div>
+<div class="term" id="forum"><h3><code>legal:forum</code></h3>
+<p>A court, tribunal, government scheme or appointing body where this kind of matter is decided or resolved.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#forum</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/GovernmentOrganization"><code>GovernmentOrganization</code></a>, <a href="https://schema.org/Organization"><code>Organization</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>Which court or tribunal hears this? Who appoints the adjudicator?</dd>
+<dt>Also publish as</dt><dd>WebPage.mentions</dd>
+</dl></div>
+<div class="term" id="governingLegislation"><h3><code>legal:governingLegislation</code></h3>
+<p>An Act, regulation or section that governs this kind of matter or defines this term.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#governingLegislation</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a>, <a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/Legislation"><code>Legislation</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>Which law covers my situation?</dd>
+<dt>Also publish as</dt><dd>WebPage.citation</dd>
+</dl></div>
+<div class="term" id="hasTimeLimit"><h3><code>legal:hasTimeLimit</code></h3>
+<p>A legal time limit that applies. Every practice area has these (limitation periods, response deadlines).</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#hasTimeLimit</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a>, <a href="https://schema.org/Legislation"><code>Legislation</code></a>, <a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Value</dt><dd><a href="#TimeLimit"><code>legal:TimeLimit</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>How long do I have to respond / to claim / to appeal?</dd>
+
+</dl></div>
+<div class="term" id="appliesToStep"><h3><code>legal:appliesToStep</code></h3>
+<p>The step that must be done in time, e.g. &#x27;Payment schedule&#x27;.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#appliesToStep</code></dd>
+<dt>Goes on</dt><dd><a href="#TimeLimit"><code>legal:TimeLimit</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>(part of a time limit)</dd>
+
+</dl></div>
+<div class="term" id="timeAllowed"><h3><code>legal:timeAllowed</code></h3>
+<p>How much time. QuantitativeValue with value and unitText, e.g. 10 + &#x27;business days&#x27;.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#timeAllowed</code></dd>
+<dt>Goes on</dt><dd><a href="#TimeLimit"><code>legal:TimeLimit</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/QuantitativeValue"><code>QuantitativeValue</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>(part of a time limit)</dd>
+
+</dl></div>
+<div class="term" id="countedFrom"><h3><code>legal:countedFrom</code></h3>
+<p>The event the time runs from, e.g. &#x27;Payment claim served&#x27;.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#countedFrom</code></dd>
+<dt>Goes on</dt><dd><a href="#TimeLimit"><code>legal:TimeLimit</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>(part of a time limit)</dd>
+
+</dl></div>
+<div class="term" id="legalSource"><h3><code>legal:legalSource</code></h3>
+<p>The Act or section that sets the time limit. Use a Legislation node for the section, isPartOf the Act.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#legalSource</code></dd>
+<dt>Goes on</dt><dd><a href="#TimeLimit"><code>legal:TimeLimit</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/Legislation"><code>Legislation</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>(part of a time limit)</dd>
+
+</dl></div>
+<div class="term" id="consequenceIfMissed"><h3><code>legal:consequenceIfMissed</code></h3>
+<p>Plain statement of what happens if the step is late or missed.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#consequenceIfMissed</code></dd>
+<dt>Goes on</dt><dd><a href="#TimeLimit"><code>legal:TimeLimit</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/Text"><code>Text</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>What happens if I miss the deadline?</dd>
+
+</dl></div>
+<div class="term" id="typicalDuration"><h3><code>legal:typicalDuration</code></h3>
+<p>The usual time from instruction to outcome, as a range. Must come from the firm, not a guess.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#typicalDuration</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/Duration"><code>Duration</code></a>, <a href="https://schema.org/QuantitativeValue"><code>QuantitativeValue</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>How long will it take?</dd>
+
+</dl></div>
+<div class="term" id="matterValueRange"><h3><code>legal:matterValueRange</code></h3>
+<p>The claim or deal values the firm usually handles for this service (MonetaryAmount with minValue / maxValue).</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#matterValueRange</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/MonetaryAmount"><code>MonetaryAmount</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>Do you take small claims? Is my matter big enough?</dd>
+
+</dl></div>
+<div class="term" id="dateAdmitted"><h3><code>legal:dateAdmitted</code></h3>
+<p>Date the lawyer was admitted to practise. schema.org credentials have no award date.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#dateAdmitted</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Person"><code>Person</code></a>, <a href="https://schema.org/EducationalOccupationalCredential"><code>EducationalOccupationalCredential</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/Date"><code>Date</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>How experienced is the lawyer?</dd>
+
+</dl></div>
+<div class="term" id="contractForm"><h3><code>legal:contractForm</code></h3>
+<p>A standard-form contract the firm drafts, reviews or disputes. Value: a CreativeWork node for the contract form.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#contractForm</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a>, <a href="https://schema.org/LegalService"><code>LegalService</code></a>, <a href="https://schema.org/Person"><code>Person</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/CreativeWork"><code>CreativeWork</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>construction</dd>
+<dt>Buyer question</dt><dd>Can you review my HIA / Master Builders / AS 4000 contract?</dd>
+<dt>Also publish as</dt><dd>knowsAbout on the firm and the lawyer</dd>
+</dl></div>
+<div class="term" id="projectType"><h3><code>legal:projectType</code></h3>
+<p>The kind of building project the service covers. Value from the ProjectTypes list.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#projectType</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>construction</dd>
+<dt>Buyer question</dt><dd>Do you handle home builds, renovations, apartments or commercial projects?</dd>
+
+</dl></div>
+<h2 id="classes">Classes</h2>
+<div class="term" id="TimeLimit"><h3><code>legal:TimeLimit</code></h3>
+<p>A legal time limit: a step that must be done within a set time, counted from a set event, under a named law.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#TimeLimit</code></dd>
+<dt>Subclass of</dt><dd><a href="https://schema.org/StructuredValue"><code>StructuredValue</code></a></dd>
+<dt>Value of</dt><dd><a href="#hasTimeLimit"><code>legal:hasTimeLimit</code></a></dd>
+<dt>Parts</dt><dd><a href="#appliesToStep"><code>legal:appliesToStep</code></a>, <a href="#timeAllowed"><code>legal:timeAllowed</code></a>, <a href="#countedFrom"><code>legal:countedFrom</code></a>, <a href="#legalSource"><code>legal:legalSource</code></a>, <a href="#consequenceIfMissed"><code>legal:consequenceIfMissed</code></a></dd>
+</dl></div>
+<h2 id="value-lists">Value lists</h2><p>Each value is a <code>DefinedTerm</code> with its own ID. Point to it with <code>{"@id": "…"}</code>. Matches to outside vocabularies say how close they are (SKOS). Only an exact match may become <code>sameAs</code> on a page.</p>
+<h3 id="PartyRoles" class="term" style="border:0;padding:0">Party roles <code>legal:PartyRoles</code></h3><div class="tablewrap"><table><tr><th>Value ID</th><th>Name</th><th>Meaning</th><th>Matches</th></tr>
+<tr id="PartyRoles-homeowner"><td><code>legal:PartyRoles-homeowner</code></td><td>Homeowner</td><td>A person who owns, or is building or renovating, their home.</td><td></td></tr>
+<tr id="PartyRoles-owners-corporation"><td><code>legal:PartyRoles-owners-corporation</code></td><td>Owners corporation</td><td>The body that manages common property in a strata or apartment building.</td><td></td></tr>
+<tr id="PartyRoles-builder"><td><code>legal:PartyRoles-builder</code></td><td>Builder</td><td>A registered builder carrying out or managing building work.</td><td></td></tr>
+<tr id="PartyRoles-head-contractor"><td><code>legal:PartyRoles-head-contractor</code></td><td>Head contractor</td><td>The contractor engaged directly by the owner or principal.</td><td></td></tr>
+<tr id="PartyRoles-subcontractor"><td><code>legal:PartyRoles-subcontractor</code></td><td>Subcontractor</td><td>A contractor engaged by another contractor.</td><td></td></tr>
+<tr id="PartyRoles-supplier"><td><code>legal:PartyRoles-supplier</code></td><td>Supplier</td><td>A person who supplies goods or materials for building work.</td><td></td></tr>
+<tr id="PartyRoles-developer"><td><code>legal:PartyRoles-developer</code></td><td>Property developer</td><td>A person or company developing property for sale or lease.</td><td></td></tr>
+<tr id="PartyRoles-consultant"><td><code>legal:PartyRoles-consultant</code></td><td>Building consultant</td><td>An architect, engineer, surveyor or other design or certifying professional.</td><td></td></tr>
+</table></div>
+<h3 id="FeeArrangements" class="term" style="border:0;padding:0">Fee arrangements <code>legal:FeeArrangements</code></h3><div class="tablewrap"><table><tr><th>Value ID</th><th>Name</th><th>Meaning</th><th>Matches</th></tr>
+<tr id="FeeArrangements-fixed-fee"><td><code>legal:FeeArrangements-fixed-fee</code></td><td>Fixed fee</td><td>One agreed price for a defined piece of work.</td><td></td></tr>
+<tr id="FeeArrangements-staged-fixed-fee"><td><code>legal:FeeArrangements-staged-fixed-fee</code></td><td>Staged fixed fee</td><td>A fixed price per stage of the matter.</td><td></td></tr>
+<tr id="FeeArrangements-hourly-rate"><td><code>legal:FeeArrangements-hourly-rate</code></td><td>Hourly rate</td><td>Charged by time spent, at a stated hourly rate.</td><td></td></tr>
+<tr id="FeeArrangements-capped-fee"><td><code>legal:FeeArrangements-capped-fee</code></td><td>Capped fee</td><td>Charged by time, up to an agreed maximum.</td><td></td></tr>
+<tr id="FeeArrangements-conditional-fee"><td><code>legal:FeeArrangements-conditional-fee</code></td><td>Conditional fee</td><td>Fees payable only on a successful outcome, where the law allows it.</td><td></td></tr>
+<tr id="FeeArrangements-free-initial-consultation"><td><code>legal:FeeArrangements-free-initial-consultation</code></td><td>Free initial consultation</td><td>A first meeting at no charge.</td><td></td></tr>
+</table></div>
+<h3 id="DisputeProcesses" class="term" style="border:0;padding:0">Dispute processes <code>legal:DisputeProcesses</code></h3><div class="tablewrap"><table><tr><th>Value ID</th><th>Name</th><th>Meaning</th><th>Matches</th></tr>
+<tr id="DisputeProcesses-negotiation"><td><code>legal:DisputeProcesses-negotiation</code></td><td>Negotiation</td><td>Parties settle directly or through lawyers.</td><td></td></tr>
+<tr id="DisputeProcesses-mediation"><td><code>legal:DisputeProcesses-mediation</code></td><td>Mediation</td><td>A neutral mediator helps the parties reach agreement.</td><td>close: <a href="https://folio.openlegalstandard.org/R9zgcjBBIdWMnwIR8nqsoS8">R9zgcjBBIdWMnwIR8nqsoS8</a></td></tr>
+<tr id="DisputeProcesses-conciliation"><td><code>legal:DisputeProcesses-conciliation</code></td><td>Conciliation</td><td>A government conciliator helps the parties reach agreement.</td><td></td></tr>
+<tr id="DisputeProcesses-adjudication"><td><code>legal:DisputeProcesses-adjudication</code></td><td>Statutory adjudication</td><td>A fast, binding interim decision on a payment dispute under security of payment law.</td><td>broad: <a href="http://www.wikidata.org/entity/Q357789">Q357789</a><br>related: <a href="http://www.wikidata.org/entity/Q7445053">Q7445053</a></td></tr>
+<tr id="DisputeProcesses-tribunal"><td><code>legal:DisputeProcesses-tribunal</code></td><td>Tribunal hearing</td><td>A hearing and decision by a tribunal.</td><td></td></tr>
+<tr id="DisputeProcesses-litigation"><td><code>legal:DisputeProcesses-litigation</code></td><td>Court litigation</td><td>Proceedings in a court.</td><td>close: <a href="https://folio.openlegalstandard.org/R79LjWBKHCdmQKEW6zPY8Co">R79LjWBKHCdmQKEW6zPY8Co</a></td></tr>
+<tr id="DisputeProcesses-arbitration"><td><code>legal:DisputeProcesses-arbitration</code></td><td>Arbitration</td><td>A private, binding decision by an arbitrator.</td><td>close: <a href="https://folio.openlegalstandard.org/RXO2u2WBkUUcEG1jczLIcA">RXO2u2WBkUUcEG1jczLIcA</a></td></tr>
+<tr id="DisputeProcesses-expert-determination"><td><code>legal:DisputeProcesses-expert-determination</code></td><td>Expert determination</td><td>An expert decides a technical question, usually by contract.</td><td></td></tr>
+</table></div>
+<h3 id="ProjectTypes" class="term" style="border:0;padding:0">Project types (construction module) <code>legal:ProjectTypes</code></h3><div class="tablewrap"><table><tr><th>Value ID</th><th>Name</th><th>Meaning</th><th>Matches</th></tr>
+<tr id="ProjectTypes-domestic-new-home"><td><code>legal:ProjectTypes-domestic-new-home</code></td><td>New home build</td><td>Domestic building work to build a new home.</td><td></td></tr>
+<tr id="ProjectTypes-domestic-renovation"><td><code>legal:ProjectTypes-domestic-renovation</code></td><td>Home renovation or extension</td><td>Domestic building work on an existing home.</td><td></td></tr>
+<tr id="ProjectTypes-apartment-strata"><td><code>legal:ProjectTypes-apartment-strata</code></td><td>Apartment or strata building</td><td>Multi-owner residential buildings and their common property.</td><td>related: <a href="http://www.wikidata.org/entity/Q5978901">Q5978901</a></td></tr>
+<tr id="ProjectTypes-commercial"><td><code>legal:ProjectTypes-commercial</code></td><td>Commercial construction</td><td>Non-residential building projects.</td><td></td></tr>
+</table></div>
+<h3 id="PracticeAreas" class="term" style="border:0;padding:0">Practice areas <code>legal:PracticeAreas</code></h3><div class="tablewrap"><table><tr><th>Value ID</th><th>Name</th><th>Meaning</th><th>Matches</th></tr>
+<tr id="PracticeAreas-building-construction"><td><code>legal:PracticeAreas-building-construction</code></td><td>Building and construction law</td><td>Law of building contracts, payment, defects and building disputes.</td><td>close: <a href="https://folio.openlegalstandard.org/R7o4TiXsYQ6vV6MrJMTfnS7">R7o4TiXsYQ6vV6MrJMTfnS7</a><br>close: <a href="http://www.wikidata.org/entity/Q811705">Q811705</a></td></tr>
+<tr id="PracticeAreas-family"><td><code>legal:PracticeAreas-family</code></td><td>Family law</td><td>Law of separation, divorce, parenting and property settlement.</td><td></td></tr>
+<tr id="PracticeAreas-wills-estates"><td><code>legal:PracticeAreas-wills-estates</code></td><td>Wills and estates</td><td>Law of wills, estate planning, probate and will disputes.</td><td></td></tr>
+<tr id="PracticeAreas-employment"><td><code>legal:PracticeAreas-employment</code></td><td>Employment law</td><td>Law of employment contracts, dismissal and workplace rights.</td><td></td></tr>
+<tr id="PracticeAreas-business-commercial"><td><code>legal:PracticeAreas-business-commercial</code></td><td>Business and commercial law</td><td>Law of buying, selling and running a business, and commercial contracts.</td><td></td></tr>
+<tr id="PracticeAreas-debt-recovery"><td><code>legal:PracticeAreas-debt-recovery</code></td><td>Debt recovery</td><td>Recovering money owed, by demand, negotiation or court action.</td><td></td></tr>
+</table></div>
+<h2 id="schema-org">schema.org properties this profile uses</h2><p>Use these first. The priority says how much buyers need the fact.</p><div class="tablewrap"><table><tr><th>Property</th><th>On</th><th>Priority</th><th>Note</th></tr>
+<tr><td><a href="https://schema.org/name"><code>name</code></a></td><td>LegalService, Service, Person, Legislation, GovernmentOrganization, DefinedTerm</td><td>High</td><td>Exact name, same everywhere.</td></tr>
+<tr><td><a href="https://schema.org/url"><code>url</code></a></td><td>LegalService, Service, Person, Legislation, GovernmentOrganization</td><td>High</td><td>The main-site page for this entity. For Acts and bodies: the official URL.</td></tr>
+<tr><td><a href="https://schema.org/sameAs"><code>sameAs</code></a></td><td>LegalService, Person, Legislation, GovernmentOrganization, DefinedTerm</td><td>High</td><td>Wikidata item, official register entry, LinkedIn, law society directory entry.</td></tr>
+<tr><td><a href="https://schema.org/telephone"><code>telephone</code></a></td><td>LegalService</td><td>High</td><td></td></tr>
+<tr><td><a href="https://schema.org/address"><code>address</code></a></td><td>LegalService</td><td>High</td><td>One LegalService node per office.</td></tr>
+<tr><td><a href="https://schema.org/areaServed"><code>areaServed</code></a></td><td>LegalService, Service</td><td>High</td><td>State or region as an AdministrativeArea with sameAs Wikidata.</td></tr>
+<tr><td><a href="https://schema.org/hasOfferCatalog"><code>hasOfferCatalog</code></a></td><td>LegalService, Service</td><td>High</td><td>Practice areas under the firm; matter types under a practice area.</td></tr>
+<tr><td><a href="https://schema.org/department"><code>department</code></a></td><td>LegalService</td><td>Medium</td><td>Links the firm to each office.</td></tr>
+<tr><td><a href="https://schema.org/parentOrganization"><code>parentOrganization</code></a></td><td>LegalService</td><td>Medium</td><td>Links each office back to the firm.</td></tr>
+<tr><td><a href="https://schema.org/employee"><code>employee</code></a></td><td>LegalService</td><td>Medium</td><td>The lawyers.</td></tr>
+<tr><td><a href="https://schema.org/knowsAbout"><code>knowsAbout</code></a></td><td>LegalService, Person</td><td>Medium</td><td>Practice-area terms, Acts, standard contract forms.</td></tr>
+<tr><td><a href="https://schema.org/memberOf"><code>memberOf</code></a></td><td>LegalService, Person</td><td>Medium</td><td>Law society, industry bodies.</td></tr>
+<tr><td><a href="https://schema.org/openingHoursSpecification"><code>openingHoursSpecification</code></a></td><td>LegalService</td><td>Medium</td><td></td></tr>
+<tr><td><a href="https://schema.org/legalName"><code>legalName</code></a></td><td>LegalService</td><td>Low</td><td></td></tr>
+<tr><td><a href="https://schema.org/foundingDate"><code>foundingDate</code></a></td><td>LegalService</td><td>Low</td><td></td></tr>
+<tr><td><a href="https://schema.org/description"><code>description</code></a></td><td>Service, DefinedTerm</td><td>High</td><td>Specific, not marketing. Same words as the page.</td></tr>
+<tr><td><a href="https://schema.org/provider"><code>provider</code></a></td><td>Service</td><td>High</td><td>The firm (or the office).</td></tr>
+<tr><td><a href="https://schema.org/serviceType"><code>serviceType</code></a></td><td>Service</td><td>High</td><td>Plain name of the matter type, e.g. &#x27;Security of payment claim&#x27;.</td></tr>
+<tr><td><a href="https://schema.org/category"><code>category</code></a></td><td>Service</td><td>High</td><td>The practice-area term from the PracticeAreas list.</td></tr>
+<tr><td><a href="https://schema.org/audience"><code>audience</code></a></td><td>Service</td><td>High</td><td>Dual-publish of actsFor, as Audience + audienceType text.</td></tr>
+<tr><td><a href="https://schema.org/offers"><code>offers</code></a></td><td>Service</td><td>High</td><td>Initial consultation and any published fixed fee, as Offer.</td></tr>
+<tr><td><a href="https://schema.org/serviceOutput"><code>serviceOutput</code></a></td><td>Service</td><td>Medium</td><td>What the client gets, e.g. an adjudication determination or a signed contract.</td></tr>
+<tr><td><a href="https://schema.org/isRelatedTo"><code>isRelatedTo</code></a></td><td>Service</td><td>Medium</td><td>Sibling matter types.</td></tr>
+<tr><td><a href="https://schema.org/availableChannel"><code>availableChannel</code></a></td><td>Service</td><td>Low</td><td>In person, phone, video.</td></tr>
+<tr><td><a href="https://schema.org/hoursAvailable"><code>hoursAvailable</code></a></td><td>Service</td><td>Low</td><td>Urgent or after-hours help, if offered.</td></tr>
+<tr><td><a href="https://schema.org/jobTitle"><code>jobTitle</code></a></td><td>Person</td><td>High</td><td>Partner, Principal, Senior Associate, Lawyer.</td></tr>
+<tr><td><a href="https://schema.org/worksFor"><code>worksFor</code></a></td><td>Person</td><td>High</td><td></td></tr>
+<tr><td><a href="https://schema.org/hasCredential"><code>hasCredential</code></a></td><td>Person</td><td>High</td><td>Admission, practising certificate, accredited specialisation.</td></tr>
+<tr><td><a href="https://schema.org/hasOccupation"><code>hasOccupation</code></a></td><td>Person</td><td>Medium</td><td>Occupation with an ANZSCO/OSCA code.</td></tr>
+<tr><td><a href="https://schema.org/alumniOf"><code>alumniOf</code></a></td><td>Person</td><td>Medium</td><td></td></tr>
+<tr><td><a href="https://schema.org/knowsLanguage"><code>knowsLanguage</code></a></td><td>Person</td><td>Medium</td><td>Buyers ask for lawyers who speak their language.</td></tr>
+<tr><td><a href="https://schema.org/workLocation"><code>workLocation</code></a></td><td>Person</td><td>Medium</td><td>The office the lawyer works from (the office LegalService node).</td></tr>
+<tr><td><a href="https://schema.org/image"><code>image</code></a></td><td>Person</td><td>Medium</td><td></td></tr>
+<tr><td><a href="https://schema.org/award"><code>award</code></a></td><td>Person, LegalService</td><td>Low</td><td>Only real, verifiable awards.</td></tr>
+<tr><td><a href="https://schema.org/credentialCategory"><code>credentialCategory</code></a></td><td>EducationalOccupationalCredential</td><td>High</td><td>Admission / Practising certificate / Accredited specialist.</td></tr>
+<tr><td><a href="https://schema.org/recognizedBy"><code>recognizedBy</code></a></td><td>EducationalOccupationalCredential</td><td>High</td><td>Court (admission), regulator (practising certificate), law society (specialisation).</td></tr>
+<tr><td><a href="https://schema.org/validIn"><code>validIn</code></a></td><td>EducationalOccupationalCredential</td><td>High</td><td>The state where it is valid.</td></tr>
+<tr><td><a href="https://schema.org/about"><code>about</code></a></td><td>EducationalOccupationalCredential, WebPage</td><td>High</td><td>Credential: the specialist area. Page: the main Service it is about.</td></tr>
+<tr><td><a href="https://schema.org/occupationalCategory"><code>occupationalCategory</code></a></td><td>Occupation</td><td>Medium</td><td>ANZSCO or OSCA code as CategoryCode.</td></tr>
+<tr><td><a href="https://schema.org/occupationLocation"><code>occupationLocation</code></a></td><td>Occupation</td><td>Low</td><td></td></tr>
+<tr><td><a href="https://schema.org/mentions"><code>mentions</code></a></td><td>WebPage</td><td>High</td><td>Every Act, body and legal term named in the visible text.</td></tr>
+<tr><td><a href="https://schema.org/reviewedBy"><code>reviewedBy</code></a></td><td>WebPage</td><td>High</td><td>The lawyer who checked the page. Legal content must show this.</td></tr>
+<tr><td><a href="https://schema.org/lastReviewed"><code>lastReviewed</code></a></td><td>WebPage</td><td>High</td><td>Law changes. Buyers and AI need to know the page is current.</td></tr>
+<tr><td><a href="https://schema.org/citation"><code>citation</code></a></td><td>WebPage</td><td>Medium</td><td>The Acts the page relies on (dual-publish of governingLegislation).</td></tr>
+<tr><td><a href="https://schema.org/author"><code>author</code></a></td><td>WebPage</td><td>Medium</td><td></td></tr>
+<tr><td><a href="https://schema.org/dateModified"><code>dateModified</code></a></td><td>WebPage</td><td>Medium</td><td></td></tr>
+<tr><td><a href="https://schema.org/alternateName"><code>alternateName</code></a></td><td>Legislation, GovernmentOrganization</td><td>High</td><td>Short names people use: &#x27;SOPA&#x27;, &#x27;VCAT&#x27;.</td></tr>
+<tr><td><a href="https://schema.org/legislationJurisdiction"><code>legislationJurisdiction</code></a></td><td>Legislation</td><td>High</td><td></td></tr>
+<tr><td><a href="https://schema.org/legislationIdentifier"><code>legislationIdentifier</code></a></td><td>Legislation</td><td>Medium</td><td>Act number, e.g. &#x27;No. 15 of 2002&#x27;.</td></tr>
+<tr><td><a href="https://schema.org/legislationType"><code>legislationType</code></a></td><td>Legislation</td><td>Medium</td><td>Act, Regulations, section.</td></tr>
+<tr><td><a href="https://schema.org/legislationLegalForce"><code>legislationLegalForce</code></a></td><td>Legislation</td><td>Medium</td><td>InForce / NotInForce / PartiallyInForce.</td></tr>
+<tr><td><a href="https://schema.org/isPartOf"><code>isPartOf</code></a></td><td>Legislation</td><td>Medium</td><td>A section node points to its Act.</td></tr>
+<tr><td><a href="https://schema.org/inDefinedTermSet"><code>inDefinedTermSet</code></a></td><td>DefinedTerm</td><td>High</td><td></td></tr>
+<tr><td><a href="https://schema.org/termCode"><code>termCode</code></a></td><td>DefinedTerm</td><td>Low</td><td></td></tr>
+<tr><td><a href="https://schema.org/price"><code>price</code></a></td><td>Offer</td><td>High</td><td>Only when the firm publishes the price.</td></tr>
+<tr><td><a href="https://schema.org/priceCurrency"><code>priceCurrency</code></a></td><td>Offer</td><td>High</td><td>AUD.</td></tr>
+<tr><td><a href="https://schema.org/itemOffered"><code>itemOffered</code></a></td><td>Offer</td><td>High</td><td></td></tr>
+<tr><td><a href="https://schema.org/priceSpecification"><code>priceSpecification</code></a></td><td>Offer</td><td>Medium</td><td>Hourly rate as UnitPriceSpecification with unitText &#x27;hour&#x27;.</td></tr>
+</table></div>
+<h2 id="annotations">Profile notes in the file</h2><p>The vocabulary file uses these terms to describe its own terms. They never go on a page.</p><div class="tablewrap"><table><tr><th>Term</th><th>Meaning</th></tr>
+<tr id="priority"><td><code>legal:priority</code></td><td>How much buyers need this fact: High, Medium or Low. High means asked often and it decides the choice.</td></tr>
+<tr id="module"><td><code>legal:module</code></td><td>Which part of the profile the term belongs to: core (every firm) or a practice module such as construction.</td></tr>
+<tr id="answersQuestion"><td><code>legal:answersQuestion</code></td><td>The buyer question, in plain words, that this fact answers.</td></tr>
+<tr id="visibleTextRequired"><td><code>legal:visibleTextRequired</code></td><td>True when the fact must also be written as visible text on the page. It always is for this profile.</td></tr>
+<tr id="priorityEvidence"><td><code>legal:priorityEvidence</code></td><td>Where the priority comes from, and how it will be measured.</td></tr>
+<tr id="dualPublishAs"><td><code>legal:dualPublishAs</code></td><td>The standard schema.org property that should carry the same fact as well, so engines that ignore custom terms still get it.</td></tr>
+<tr id="propertyIndex"><td><code>legal:propertyIndex</code></td><td>Counts of the terms in this file.</td></tr>
+</table></div>
+<h2 id="versions">Versions and changes</h2>
+<div class="tablewrap"><table><tr><th>Version</th><th>Date</th><th>Change</th></tr>
+<tr><td><a href="./">0.1</a></td><td>2026-10-20</td><td>First public draft.</td></tr>
+</table></div>
+<p>Rules: a term ID is never changed or deleted. A replaced term is marked <code>owl:deprecated</code> and
+<code>schema:supersededBy</code> its replacement. Each release gets a frozen copy.
+Propose a change as a <a href="https://github.com/wldm-gh/servicefacts/issues">GitHub issue</a>.</p>
+<footer>
+Service Facts is maintained by <a href="https://wldm.io/">WLDM</a> (<a href="mailto:peter@wldm.io">peter@wldm.io</a>).
+Licence: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source and issues: <a href="https://github.com/wldm-gh/servicefacts">github.com/wldm-gh/servicefacts</a>.
+</footer>
+</main>
+</body>
+</html>

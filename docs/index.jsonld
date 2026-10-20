@@ -1,0 +1,25 @@
+{
+  "@context": {
+    "schema": "https://schema.org/"
+  },
+  "@id": "https://w3id.org/servicefacts",
+  "@type": "schema:CreativeWork",
+  "schema:name": "Service Facts",
+  "schema:description": "Open schema.org extension vocabularies for the facts buyers ask about professional services.",
+  "schema:license": "https://creativecommons.org/licenses/by/4.0/",
+  "schema:maintainer": {
+    "@type": "schema:Organization",
+    "schema:name": "WLDM",
+    "schema:url": "https://wldm.io/",
+    "schema:email": "peter@wldm.io"
+  },
+  "schema:discussionUrl": "https://github.com/wldm-gh/servicefacts/issues",
+  "schema:hasPart": [
+    {
+      "@id": "https://w3id.org/servicefacts/legal",
+      "@type": "schema:CreativeWork",
+      "schema:name": "Service Facts: Legal Services Profile",
+      "schema:version": "0.1"
+    }
+  ]
+}

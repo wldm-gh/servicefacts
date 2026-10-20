@@ -1,0 +1,970 @@
+@prefix legal: <https://w3id.org/servicefacts/legal#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+legal:TimeLimit a rdfs:Class ;
+    rdfs:label "TimeLimit" ;
+    rdfs:comment "A legal time limit: a step that must be done within a set time, counted from a set event, under a named law." ;
+    rdfs:subClassOf schema:StructuredValue .
+
+schema:about a rdf:Property ;
+    rdfs:label "about" ;
+    rdfs:comment "Credential: the specialist area. Page: the main Service it is about." ;
+    schema:domainIncludes schema:EducationalOccupationalCredential,
+        schema:WebPage ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:address a rdf:Property ;
+    rdfs:label "address" ;
+    rdfs:comment "One LegalService node per office." ;
+    schema:domainIncludes schema:LegalService ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:alternateName a rdf:Property ;
+    rdfs:label "alternateName" ;
+    rdfs:comment "Short names people use: 'SOPA', 'VCAT'." ;
+    schema:domainIncludes schema:GovernmentOrganization,
+        schema:Legislation ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:alumniOf a rdf:Property ;
+    rdfs:label "alumniOf" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:areaServed a rdf:Property ;
+    rdfs:label "areaServed" ;
+    rdfs:comment "State or region as an AdministrativeArea with sameAs Wikidata." ;
+    schema:domainIncludes schema:LegalService,
+        schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:audience a rdf:Property ;
+    rdfs:label "audience" ;
+    rdfs:comment "Dual-publish of actsFor, as Audience + audienceType text." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:author a rdf:Property ;
+    rdfs:label "author" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:WebPage ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:availableChannel a rdf:Property ;
+    rdfs:label "availableChannel" ;
+    rdfs:comment "In person, phone, video." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Low" .
+
+schema:award a rdf:Property ;
+    rdfs:label "award" ;
+    rdfs:comment "Only real, verifiable awards." ;
+    schema:domainIncludes schema:LegalService,
+        schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Low" .
+
+schema:category a rdf:Property ;
+    rdfs:label "category" ;
+    rdfs:comment "The practice-area term from the PracticeAreas list." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:citation a rdf:Property ;
+    rdfs:label "citation" ;
+    rdfs:comment "The Acts the page relies on (dual-publish of governingLegislation)." ;
+    schema:domainIncludes schema:WebPage ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:credentialCategory a rdf:Property ;
+    rdfs:label "credentialCategory" ;
+    rdfs:comment "Admission / Practising certificate / Accredited specialist." ;
+    schema:domainIncludes schema:EducationalOccupationalCredential ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:dateModified a rdf:Property ;
+    rdfs:label "dateModified" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:WebPage ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:department a rdf:Property ;
+    rdfs:label "department" ;
+    rdfs:comment "Links the firm to each office." ;
+    schema:domainIncludes schema:LegalService ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:description a rdf:Property ;
+    rdfs:label "description" ;
+    rdfs:comment "Specific, not marketing. Same words as the page." ;
+    schema:domainIncludes schema:DefinedTerm,
+        schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:employee a rdf:Property ;
+    rdfs:label "employee" ;
+    rdfs:comment "The lawyers." ;
+    schema:domainIncludes schema:LegalService ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:foundingDate a rdf:Property ;
+    rdfs:label "foundingDate" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:LegalService ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Low" .
+
+schema:hasCredential a rdf:Property ;
+    rdfs:label "hasCredential" ;
+    rdfs:comment "Admission, practising certificate, accredited specialisation." ;
+    schema:domainIncludes schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:hasOccupation a rdf:Property ;
+    rdfs:label "hasOccupation" ;
+    rdfs:comment "Occupation with an ANZSCO/OSCA code." ;
+    schema:domainIncludes schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:hasOfferCatalog a rdf:Property ;
+    rdfs:label "hasOfferCatalog" ;
+    rdfs:comment "Practice areas under the firm; matter types under a practice area." ;
+    schema:domainIncludes schema:LegalService,
+        schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:hoursAvailable a rdf:Property ;
+    rdfs:label "hoursAvailable" ;
+    rdfs:comment "Urgent or after-hours help, if offered." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Low" .
+
+schema:image a rdf:Property ;
+    rdfs:label "image" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:inDefinedTermSet a rdf:Property ;
+    rdfs:label "inDefinedTermSet" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:DefinedTerm ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:isPartOf a rdf:Property ;
+    rdfs:label "isPartOf" ;
+    rdfs:comment "A section node points to its Act." ;
+    schema:domainIncludes schema:Legislation ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:isRelatedTo a rdf:Property ;
+    rdfs:label "isRelatedTo" ;
+    rdfs:comment "Sibling matter types." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:itemOffered a rdf:Property ;
+    rdfs:label "itemOffered" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:Offer ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:jobTitle a rdf:Property ;
+    rdfs:label "jobTitle" ;
+    rdfs:comment "Partner, Principal, Senior Associate, Lawyer." ;
+    schema:domainIncludes schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:knowsAbout a rdf:Property ;
+    rdfs:label "knowsAbout" ;
+    rdfs:comment "Practice-area terms, Acts, standard contract forms." ;
+    schema:domainIncludes schema:LegalService,
+        schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:knowsLanguage a rdf:Property ;
+    rdfs:label "knowsLanguage" ;
+    rdfs:comment "Buyers ask for lawyers who speak their language." ;
+    schema:domainIncludes schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:lastReviewed a rdf:Property ;
+    rdfs:label "lastReviewed" ;
+    rdfs:comment "Law changes. Buyers and AI need to know the page is current." ;
+    schema:domainIncludes schema:WebPage ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:legalName a rdf:Property ;
+    rdfs:label "legalName" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:LegalService ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Low" .
+
+schema:legislationIdentifier a rdf:Property ;
+    rdfs:label "legislationIdentifier" ;
+    rdfs:comment "Act number, e.g. 'No. 15 of 2002'." ;
+    schema:domainIncludes schema:Legislation ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:legislationJurisdiction a rdf:Property ;
+    rdfs:label "legislationJurisdiction" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:Legislation ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:legislationLegalForce a rdf:Property ;
+    rdfs:label "legislationLegalForce" ;
+    rdfs:comment "InForce / NotInForce / PartiallyInForce." ;
+    schema:domainIncludes schema:Legislation ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:legislationType a rdf:Property ;
+    rdfs:label "legislationType" ;
+    rdfs:comment "Act, Regulations, section." ;
+    schema:domainIncludes schema:Legislation ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:memberOf a rdf:Property ;
+    rdfs:label "memberOf" ;
+    rdfs:comment "Law society, industry bodies." ;
+    schema:domainIncludes schema:LegalService,
+        schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:mentions a rdf:Property ;
+    rdfs:label "mentions" ;
+    rdfs:comment "Every Act, body and legal term named in the visible text." ;
+    schema:domainIncludes schema:WebPage ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:name a rdf:Property ;
+    rdfs:label "name" ;
+    rdfs:comment "Exact name, same everywhere." ;
+    schema:domainIncludes schema:DefinedTerm,
+        schema:GovernmentOrganization,
+        schema:LegalService,
+        schema:Legislation,
+        schema:Person,
+        schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:occupationLocation a rdf:Property ;
+    rdfs:label "occupationLocation" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:Occupation ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Low" .
+
+schema:occupationalCategory a rdf:Property ;
+    rdfs:label "occupationalCategory" ;
+    rdfs:comment "ANZSCO or OSCA code as CategoryCode." ;
+    schema:domainIncludes schema:Occupation ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:offers a rdf:Property ;
+    rdfs:label "offers" ;
+    rdfs:comment "Initial consultation and any published fixed fee, as Offer." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:openingHoursSpecification a rdf:Property ;
+    rdfs:label "openingHoursSpecification" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:LegalService ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:parentOrganization a rdf:Property ;
+    rdfs:label "parentOrganization" ;
+    rdfs:comment "Links each office back to the firm." ;
+    schema:domainIncludes schema:LegalService ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:price a rdf:Property ;
+    rdfs:label "price" ;
+    rdfs:comment "Only when the firm publishes the price." ;
+    schema:domainIncludes schema:Offer ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:priceCurrency a rdf:Property ;
+    rdfs:label "priceCurrency" ;
+    rdfs:comment "AUD." ;
+    schema:domainIncludes schema:Offer ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:priceSpecification a rdf:Property ;
+    rdfs:label "priceSpecification" ;
+    rdfs:comment "Hourly rate as UnitPriceSpecification with unitText 'hour'." ;
+    schema:domainIncludes schema:Offer ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:provider a rdf:Property ;
+    rdfs:label "provider" ;
+    rdfs:comment "The firm (or the office)." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:recognizedBy a rdf:Property ;
+    rdfs:label "recognizedBy" ;
+    rdfs:comment "Court (admission), regulator (practising certificate), law society (specialisation)." ;
+    schema:domainIncludes schema:EducationalOccupationalCredential ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:reviewedBy a rdf:Property ;
+    rdfs:label "reviewedBy" ;
+    rdfs:comment "The lawyer who checked the page. Legal content must show this." ;
+    schema:domainIncludes schema:WebPage ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:sameAs a rdf:Property ;
+    rdfs:label "sameAs" ;
+    rdfs:comment "Wikidata item, official register entry, LinkedIn, law society directory entry." ;
+    schema:domainIncludes schema:DefinedTerm,
+        schema:GovernmentOrganization,
+        schema:LegalService,
+        schema:Legislation,
+        schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:serviceOutput a rdf:Property ;
+    rdfs:label "serviceOutput" ;
+    rdfs:comment "What the client gets, e.g. an adjudication determination or a signed contract." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:serviceType a rdf:Property ;
+    rdfs:label "serviceType" ;
+    rdfs:comment "Plain name of the matter type, e.g. 'Security of payment claim'." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:telephone a rdf:Property ;
+    rdfs:label "telephone" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:LegalService ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:termCode a rdf:Property ;
+    rdfs:label "termCode" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:DefinedTerm ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Low" .
+
+schema:url a rdf:Property ;
+    rdfs:label "url" ;
+    rdfs:comment "The main-site page for this entity. For Acts and bodies: the official URL." ;
+    schema:domainIncludes schema:GovernmentOrganization,
+        schema:LegalService,
+        schema:Legislation,
+        schema:Person,
+        schema:Service ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:validIn a rdf:Property ;
+    rdfs:label "validIn" ;
+    rdfs:comment "The state where it is valid." ;
+    schema:domainIncludes schema:EducationalOccupationalCredential ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+schema:workLocation a rdf:Property ;
+    rdfs:label "workLocation" ;
+    rdfs:comment "The office the lawyer works from (the office LegalService node)." ;
+    schema:domainIncludes schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "Medium" .
+
+schema:worksFor a rdf:Property ;
+    rdfs:label "worksFor" ;
+    rdfs:comment "Standard schema.org property." ;
+    schema:domainIncludes schema:Person ;
+    schema:isPartOf <https://schema.org> ;
+    legal:module "core" ;
+    legal:priority "High" .
+
+legal:actsFor a rdf:Property ;
+    rdfs:label "actsFor" ;
+    rdfs:comment "A party role the firm or lawyer acts for in this kind of matter. Value from the PartyRoles list." ;
+    schema:domainIncludes schema:LegalService,
+        schema:Person,
+        schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "Do you act for subcontractors / homeowners / builders?" ;
+    legal:dualPublishAs "audience (Audience + audienceType text)" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:appliesToStep a rdf:Property ;
+    rdfs:label "appliesToStep" ;
+    rdfs:comment "The step that must be done in time, e.g. 'Payment schedule'." ;
+    schema:domainIncludes legal:TimeLimit ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "(part of a time limit)" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:consequenceIfMissed a rdf:Property ;
+    rdfs:label "consequenceIfMissed" ;
+    rdfs:comment "Plain statement of what happens if the step is late or missed." ;
+    schema:domainIncludes legal:TimeLimit ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:Text ;
+    legal:answersQuestion "What happens if I miss the deadline?" ;
+    legal:module "core" ;
+    legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:contractForm a rdf:Property ;
+    rdfs:label "contractForm" ;
+    rdfs:comment "A standard-form contract the firm drafts, reviews or disputes. Value: a CreativeWork node for the contract form." ;
+    schema:domainIncludes schema:LegalService,
+        schema:Person,
+        schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:CreativeWork ;
+    legal:answersQuestion "Can you review my HIA / Master Builders / AS 4000 contract?" ;
+    legal:dualPublishAs "knowsAbout on the firm and the lawyer" ;
+    legal:module "construction" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:countedFrom a rdf:Property ;
+    rdfs:label "countedFrom" ;
+    rdfs:comment "The event the time runs from, e.g. 'Payment claim served'." ;
+    schema:domainIncludes legal:TimeLimit ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "(part of a time limit)" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:dateAdmitted a rdf:Property ;
+    rdfs:label "dateAdmitted" ;
+    rdfs:comment "Date the lawyer was admitted to practise. schema.org credentials have no award date." ;
+    schema:domainIncludes schema:EducationalOccupationalCredential,
+        schema:Person ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:Date ;
+    legal:answersQuestion "How experienced is the lawyer?" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:disputeProcess a rdf:Property ;
+    rdfs:label "disputeProcess" ;
+    rdfs:comment "A dispute-resolution process the service can use or lead to. Value from the DisputeProcesses list." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "Will this go to court? Can it be settled by mediation or adjudication?" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:feeArrangement a rdf:Property ;
+    rdfs:label "feeArrangement" ;
+    rdfs:comment "How the firm charges for this kind of matter. Value from the FeeArrangements list." ;
+    schema:domainIncludes schema:Offer,
+        schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "Is it a fixed fee? Do you charge by the hour? Is the first meeting free?" ;
+    legal:dualPublishAs "offers → Offer with price / priceSpecification, when a price is published" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:forum a rdf:Property ;
+    rdfs:label "forum" ;
+    rdfs:comment "A court, tribunal, government scheme or appointing body where this kind of matter is decided or resolved." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:GovernmentOrganization,
+        schema:Organization ;
+    legal:answersQuestion "Which court or tribunal hears this? Who appoints the adjudicator?" ;
+    legal:dualPublishAs "WebPage.mentions" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:governingLegislation a rdf:Property ;
+    rdfs:label "governingLegislation" ;
+    rdfs:comment "An Act, regulation or section that governs this kind of matter or defines this term." ;
+    schema:domainIncludes schema:DefinedTerm,
+        schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:Legislation ;
+    legal:answersQuestion "Which law covers my situation?" ;
+    legal:dualPublishAs "WebPage.citation" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:hasTimeLimit a rdf:Property ;
+    rdfs:label "hasTimeLimit" ;
+    rdfs:comment "A legal time limit that applies. Every practice area has these (limitation periods, response deadlines)." ;
+    schema:domainIncludes schema:DefinedTerm,
+        schema:Legislation,
+        schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes legal:TimeLimit ;
+    legal:answersQuestion "How long do I have to respond / to claim / to appeal?" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:legalSource a rdf:Property ;
+    rdfs:label "legalSource" ;
+    rdfs:comment "The Act or section that sets the time limit. Use a Legislation node for the section, isPartOf the Act." ;
+    schema:domainIncludes legal:TimeLimit ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:Legislation ;
+    legal:answersQuestion "(part of a time limit)" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:matterValueRange a rdf:Property ;
+    rdfs:label "matterValueRange" ;
+    rdfs:comment "The claim or deal values the firm usually handles for this service (MonetaryAmount with minValue / maxValue)." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:MonetaryAmount ;
+    legal:answersQuestion "Do you take small claims? Is my matter big enough?" ;
+    legal:module "core" ;
+    legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:projectType a rdf:Property ;
+    rdfs:label "projectType" ;
+    rdfs:comment "The kind of building project the service covers. Value from the ProjectTypes list." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "Do you handle home builds, renovations, apartments or commercial projects?" ;
+    legal:module "construction" ;
+    legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:timeAllowed a rdf:Property ;
+    rdfs:label "timeAllowed" ;
+    rdfs:comment "How much time. QuantitativeValue with value and unitText, e.g. 10 + 'business days'." ;
+    schema:domainIncludes legal:TimeLimit ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:QuantitativeValue ;
+    legal:answersQuestion "(part of a time limit)" ;
+    legal:module "core" ;
+    legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:typicalDuration a rdf:Property ;
+    rdfs:label "typicalDuration" ;
+    rdfs:comment "The usual time from instruction to outcome, as a range. Must come from the firm, not a guess." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:Duration,
+        schema:QuantitativeValue ;
+    legal:answersQuestion "How long will it take?" ;
+    legal:module "core" ;
+    legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:DisputeProcesses-adjudication a schema:DefinedTerm ;
+    skos:broadMatch <http://www.wikidata.org/entity/Q357789> ;
+    skos:relatedMatch <http://www.wikidata.org/entity/Q7445053> ;
+    schema:description "A fast, binding interim decision on a payment dispute under security of payment law." ;
+    schema:inDefinedTermSet legal:DisputeProcesses ;
+    schema:name "Statutory adjudication" ;
+    schema:termCode "adjudication" .
+
+legal:DisputeProcesses-arbitration a schema:DefinedTerm ;
+    skos:closeMatch <https://folio.openlegalstandard.org/RXO2u2WBkUUcEG1jczLIcA> ;
+    schema:description "A private, binding decision by an arbitrator." ;
+    schema:inDefinedTermSet legal:DisputeProcesses ;
+    schema:name "Arbitration" ;
+    schema:termCode "arbitration" .
+
+legal:DisputeProcesses-conciliation a schema:DefinedTerm ;
+    schema:description "A government conciliator helps the parties reach agreement." ;
+    schema:inDefinedTermSet legal:DisputeProcesses ;
+    schema:name "Conciliation" ;
+    schema:termCode "conciliation" .
+
+legal:DisputeProcesses-expert-determination a schema:DefinedTerm ;
+    schema:description "An expert decides a technical question, usually by contract." ;
+    schema:inDefinedTermSet legal:DisputeProcesses ;
+    schema:name "Expert determination" ;
+    schema:termCode "expert-determination" .
+
+legal:DisputeProcesses-litigation a schema:DefinedTerm ;
+    skos:closeMatch <https://folio.openlegalstandard.org/R79LjWBKHCdmQKEW6zPY8Co> ;
+    schema:description "Proceedings in a court." ;
+    schema:inDefinedTermSet legal:DisputeProcesses ;
+    schema:name "Court litigation" ;
+    schema:termCode "litigation" .
+
+legal:DisputeProcesses-mediation a schema:DefinedTerm ;
+    skos:closeMatch <https://folio.openlegalstandard.org/R9zgcjBBIdWMnwIR8nqsoS8> ;
+    schema:description "A neutral mediator helps the parties reach agreement." ;
+    schema:inDefinedTermSet legal:DisputeProcesses ;
+    schema:name "Mediation" ;
+    schema:termCode "mediation" .
+
+legal:DisputeProcesses-negotiation a schema:DefinedTerm ;
+    schema:description "Parties settle directly or through lawyers." ;
+    schema:inDefinedTermSet legal:DisputeProcesses ;
+    schema:name "Negotiation" ;
+    schema:termCode "negotiation" .
+
+legal:DisputeProcesses-tribunal a schema:DefinedTerm ;
+    schema:description "A hearing and decision by a tribunal." ;
+    schema:inDefinedTermSet legal:DisputeProcesses ;
+    schema:name "Tribunal hearing" ;
+    schema:termCode "tribunal" .
+
+legal:FeeArrangements-capped-fee a schema:DefinedTerm ;
+    schema:description "Charged by time, up to an agreed maximum." ;
+    schema:inDefinedTermSet legal:FeeArrangements ;
+    schema:name "Capped fee" ;
+    schema:termCode "capped-fee" .
+
+legal:FeeArrangements-conditional-fee a schema:DefinedTerm ;
+    schema:description "Fees payable only on a successful outcome, where the law allows it." ;
+    schema:inDefinedTermSet legal:FeeArrangements ;
+    schema:name "Conditional fee" ;
+    schema:termCode "conditional-fee" .
+
+legal:FeeArrangements-fixed-fee a schema:DefinedTerm ;
+    schema:description "One agreed price for a defined piece of work." ;
+    schema:inDefinedTermSet legal:FeeArrangements ;
+    schema:name "Fixed fee" ;
+    schema:termCode "fixed-fee" .
+
+legal:FeeArrangements-free-initial-consultation a schema:DefinedTerm ;
+    schema:description "A first meeting at no charge." ;
+    schema:inDefinedTermSet legal:FeeArrangements ;
+    schema:name "Free initial consultation" ;
+    schema:termCode "free-initial-consultation" .
+
+legal:FeeArrangements-hourly-rate a schema:DefinedTerm ;
+    schema:description "Charged by time spent, at a stated hourly rate." ;
+    schema:inDefinedTermSet legal:FeeArrangements ;
+    schema:name "Hourly rate" ;
+    schema:termCode "hourly-rate" .
+
+legal:FeeArrangements-staged-fixed-fee a schema:DefinedTerm ;
+    schema:description "A fixed price per stage of the matter." ;
+    schema:inDefinedTermSet legal:FeeArrangements ;
+    schema:name "Staged fixed fee" ;
+    schema:termCode "staged-fixed-fee" .
+
+legal:PartyRoles-builder a schema:DefinedTerm ;
+    schema:description "A registered builder carrying out or managing building work." ;
+    schema:inDefinedTermSet legal:PartyRoles ;
+    schema:name "Builder" ;
+    schema:termCode "builder" .
+
+legal:PartyRoles-consultant a schema:DefinedTerm ;
+    schema:description "An architect, engineer, surveyor or other design or certifying professional." ;
+    schema:inDefinedTermSet legal:PartyRoles ;
+    schema:name "Building consultant" ;
+    schema:termCode "consultant" .
+
+legal:PartyRoles-developer a schema:DefinedTerm ;
+    schema:description "A person or company developing property for sale or lease." ;
+    schema:inDefinedTermSet legal:PartyRoles ;
+    schema:name "Property developer" ;
+    schema:termCode "developer" .
+
+legal:PartyRoles-head-contractor a schema:DefinedTerm ;
+    schema:description "The contractor engaged directly by the owner or principal." ;
+    schema:inDefinedTermSet legal:PartyRoles ;
+    schema:name "Head contractor" ;
+    schema:termCode "head-contractor" .
+
+legal:PartyRoles-homeowner a schema:DefinedTerm ;
+    schema:description "A person who owns, or is building or renovating, their home." ;
+    schema:inDefinedTermSet legal:PartyRoles ;
+    schema:name "Homeowner" ;
+    schema:termCode "homeowner" .
+
+legal:PartyRoles-owners-corporation a schema:DefinedTerm ;
+    schema:description "The body that manages common property in a strata or apartment building." ;
+    schema:inDefinedTermSet legal:PartyRoles ;
+    schema:name "Owners corporation" ;
+    schema:termCode "owners-corporation" .
+
+legal:PartyRoles-subcontractor a schema:DefinedTerm ;
+    schema:description "A contractor engaged by another contractor." ;
+    schema:inDefinedTermSet legal:PartyRoles ;
+    schema:name "Subcontractor" ;
+    schema:termCode "subcontractor" .
+
+legal:PartyRoles-supplier a schema:DefinedTerm ;
+    schema:description "A person who supplies goods or materials for building work." ;
+    schema:inDefinedTermSet legal:PartyRoles ;
+    schema:name "Supplier" ;
+    schema:termCode "supplier" .
+
+legal:PracticeAreas-building-construction a schema:DefinedTerm ;
+    skos:closeMatch <http://www.wikidata.org/entity/Q811705>,
+        <https://folio.openlegalstandard.org/R7o4TiXsYQ6vV6MrJMTfnS7> ;
+    schema:description "Law of building contracts, payment, defects and building disputes." ;
+    schema:inDefinedTermSet legal:PracticeAreas ;
+    schema:name "Building and construction law" ;
+    schema:termCode "building-construction" .
+
+legal:PracticeAreas-business-commercial a schema:DefinedTerm ;
+    schema:description "Law of buying, selling and running a business, and commercial contracts." ;
+    schema:inDefinedTermSet legal:PracticeAreas ;
+    schema:name "Business and commercial law" ;
+    schema:termCode "business-commercial" .
+
+legal:PracticeAreas-debt-recovery a schema:DefinedTerm ;
+    schema:description "Recovering money owed, by demand, negotiation or court action." ;
+    schema:inDefinedTermSet legal:PracticeAreas ;
+    schema:name "Debt recovery" ;
+    schema:termCode "debt-recovery" .
+
+legal:PracticeAreas-employment a schema:DefinedTerm ;
+    schema:description "Law of employment contracts, dismissal and workplace rights." ;
+    schema:inDefinedTermSet legal:PracticeAreas ;
+    schema:name "Employment law" ;
+    schema:termCode "employment" .
+
+legal:PracticeAreas-family a schema:DefinedTerm ;
+    schema:description "Law of separation, divorce, parenting and property settlement." ;
+    schema:inDefinedTermSet legal:PracticeAreas ;
+    schema:name "Family law" ;
+    schema:termCode "family" .
+
+legal:PracticeAreas-wills-estates a schema:DefinedTerm ;
+    schema:description "Law of wills, estate planning, probate and will disputes." ;
+    schema:inDefinedTermSet legal:PracticeAreas ;
+    schema:name "Wills and estates" ;
+    schema:termCode "wills-estates" .
+
+legal:ProjectTypes-apartment-strata a schema:DefinedTerm ;
+    skos:relatedMatch <http://www.wikidata.org/entity/Q5978901> ;
+    schema:description "Multi-owner residential buildings and their common property." ;
+    schema:inDefinedTermSet legal:ProjectTypes ;
+    schema:name "Apartment or strata building" ;
+    schema:termCode "apartment-strata" .
+
+legal:ProjectTypes-commercial a schema:DefinedTerm ;
+    schema:description "Non-residential building projects." ;
+    schema:inDefinedTermSet legal:ProjectTypes ;
+    schema:name "Commercial construction" ;
+    schema:termCode "commercial" .
+
+legal:ProjectTypes-domestic-new-home a schema:DefinedTerm ;
+    schema:description "Domestic building work to build a new home." ;
+    schema:inDefinedTermSet legal:ProjectTypes ;
+    schema:name "New home build" ;
+    schema:termCode "domestic-new-home" .
+
+legal:ProjectTypes-domestic-renovation a schema:DefinedTerm ;
+    schema:description "Domestic building work on an existing home." ;
+    schema:inDefinedTermSet legal:ProjectTypes ;
+    schema:name "Home renovation or extension" ;
+    schema:termCode "domestic-renovation" .
+
+legal:ProjectTypes a schema:DefinedTermSet ;
+    schema:hasDefinedTerm legal:ProjectTypes-apartment-strata,
+        legal:ProjectTypes-commercial,
+        legal:ProjectTypes-domestic-new-home,
+        legal:ProjectTypes-domestic-renovation ;
+    schema:name "Project types (construction module)" .
+
+legal:FeeArrangements a schema:DefinedTermSet ;
+    schema:hasDefinedTerm legal:FeeArrangements-capped-fee,
+        legal:FeeArrangements-conditional-fee,
+        legal:FeeArrangements-fixed-fee,
+        legal:FeeArrangements-free-initial-consultation,
+        legal:FeeArrangements-hourly-rate,
+        legal:FeeArrangements-staged-fixed-fee ;
+    schema:name "Fee arrangements" .
+
+legal:PracticeAreas a schema:DefinedTermSet ;
+    schema:hasDefinedTerm legal:PracticeAreas-building-construction,
+        legal:PracticeAreas-business-commercial,
+        legal:PracticeAreas-debt-recovery,
+        legal:PracticeAreas-employment,
+        legal:PracticeAreas-family,
+        legal:PracticeAreas-wills-estates ;
+    schema:name "Practice areas" .
+
+legal:DisputeProcesses a schema:DefinedTermSet ;
+    schema:hasDefinedTerm legal:DisputeProcesses-adjudication,
+        legal:DisputeProcesses-arbitration,
+        legal:DisputeProcesses-conciliation,
+        legal:DisputeProcesses-expert-determination,
+        legal:DisputeProcesses-litigation,
+        legal:DisputeProcesses-mediation,
+        legal:DisputeProcesses-negotiation,
+        legal:DisputeProcesses-tribunal ;
+    schema:name "Dispute processes" .
+
+legal:PartyRoles a schema:DefinedTermSet ;
+    schema:hasDefinedTerm legal:PartyRoles-builder,
+        legal:PartyRoles-consultant,
+        legal:PartyRoles-developer,
+        legal:PartyRoles-head-contractor,
+        legal:PartyRoles-homeowner,
+        legal:PartyRoles-owners-corporation,
+        legal:PartyRoles-subcontractor,
+        legal:PartyRoles-supplier ;
+    schema:name "Party roles" .
+
+<https://w3id.org/servicefacts/legal> a owl:Ontology,
+        schema:CreativeWork ;
+    owl:versionIRI <https://w3id.org/servicefacts/legal/0.1> ;
+    owl:versionInfo "0.1" ;
+    schema:creativeWorkStatus "Draft" ;
+    schema:dateModified "2026-10-20" ;
+    schema:description "Draft. Facts buyers ask about legal services, and how to state and mark them up. Standard schema.org first; custom terms only where schema.org has no home. v0.1 was built for Australian building and construction law." ;
+    schema:discussionUrl "https://github.com/wldm-gh/servicefacts/issues" ;
+    schema:license "https://creativecommons.org/licenses/by/4.0/" ;
+    schema:maintainer [ a schema:Organization ;
+            schema:email "peter@wldm.io" ;
+            schema:name "WLDM" ;
+            schema:url "https://wldm.io/" ] ;
+    schema:name "Service Facts: Legal Services Profile" ;
+    schema:version "0.1" ;
+    legal:propertyIndex [ ] .
+

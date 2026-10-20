@@ -1,0 +1,1956 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "legal": "https://w3id.org/servicefacts/legal#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "https://w3id.org/servicefacts/legal",
+  "@type": [
+    "schema:CreativeWork",
+    "owl:Ontology"
+  ],
+  "owl:versionIRI": {
+    "@id": "https://w3id.org/servicefacts/legal/0.1"
+  },
+  "owl:versionInfo": "0.1",
+  "schema:name": "Service Facts: Legal Services Profile",
+  "schema:version": "0.1",
+  "schema:dateModified": "2026-10-20",
+  "schema:license": "https://creativecommons.org/licenses/by/4.0/",
+  "schema:maintainer": {
+    "@type": "schema:Organization",
+    "schema:name": "WLDM",
+    "schema:url": "https://wldm.io/",
+    "schema:email": "peter@wldm.io"
+  },
+  "schema:discussionUrl": "https://github.com/wldm-gh/servicefacts/issues",
+  "schema:creativeWorkStatus": "Draft",
+  "schema:description": "Draft. Facts buyers ask about legal services, and how to state and mark them up. Standard schema.org first; custom terms only where schema.org has no home. v0.1 was built for Australian building and construction law.",
+  "legal:propertyIndex": {
+    "schemaOrgProperties": 58,
+    "customProperties": 16,
+    "classes": 1,
+    "termSets": 5,
+    "modules": [
+      "construction",
+      "core"
+    ]
+  },
+  "@graph": [
+    {
+      "@id": "schema:name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "rdfs:comment": "Exact name, same everywhere.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:Person"
+        },
+        {
+          "@id": "schema:Legislation"
+        },
+        {
+          "@id": "schema:GovernmentOrganization"
+        },
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:url",
+      "@type": "rdf:Property",
+      "rdfs:label": "url",
+      "rdfs:comment": "The main-site page for this entity. For Acts and bodies: the official URL.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:Person"
+        },
+        {
+          "@id": "schema:Legislation"
+        },
+        {
+          "@id": "schema:GovernmentOrganization"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:sameAs",
+      "@type": "rdf:Property",
+      "rdfs:label": "sameAs",
+      "rdfs:comment": "Wikidata item, official register entry, LinkedIn, law society directory entry.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Person"
+        },
+        {
+          "@id": "schema:Legislation"
+        },
+        {
+          "@id": "schema:GovernmentOrganization"
+        },
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:telephone",
+      "@type": "rdf:Property",
+      "rdfs:label": "telephone",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:address",
+      "@type": "rdf:Property",
+      "rdfs:label": "address",
+      "rdfs:comment": "One LegalService node per office.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:areaServed",
+      "@type": "rdf:Property",
+      "rdfs:label": "areaServed",
+      "rdfs:comment": "State or region as an AdministrativeArea with sameAs Wikidata.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:hasOfferCatalog",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasOfferCatalog",
+      "rdfs:comment": "Practice areas under the firm; matter types under a practice area.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:department",
+      "@type": "rdf:Property",
+      "rdfs:label": "department",
+      "rdfs:comment": "Links the firm to each office.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:parentOrganization",
+      "@type": "rdf:Property",
+      "rdfs:label": "parentOrganization",
+      "rdfs:comment": "Links each office back to the firm.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:employee",
+      "@type": "rdf:Property",
+      "rdfs:label": "employee",
+      "rdfs:comment": "The lawyers.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:knowsAbout",
+      "@type": "rdf:Property",
+      "rdfs:label": "knowsAbout",
+      "rdfs:comment": "Practice-area terms, Acts, standard contract forms.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:memberOf",
+      "@type": "rdf:Property",
+      "rdfs:label": "memberOf",
+      "rdfs:comment": "Law society, industry bodies.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:openingHoursSpecification",
+      "@type": "rdf:Property",
+      "rdfs:label": "openingHoursSpecification",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:legalName",
+      "@type": "rdf:Property",
+      "rdfs:label": "legalName",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Low",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:foundingDate",
+      "@type": "rdf:Property",
+      "rdfs:label": "foundingDate",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Low",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:description",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "rdfs:comment": "Specific, not marketing. Same words as the page.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:provider",
+      "@type": "rdf:Property",
+      "rdfs:label": "provider",
+      "rdfs:comment": "The firm (or the office).",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:serviceType",
+      "@type": "rdf:Property",
+      "rdfs:label": "serviceType",
+      "rdfs:comment": "Plain name of the matter type, e.g. 'Security of payment claim'.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:category",
+      "@type": "rdf:Property",
+      "rdfs:label": "category",
+      "rdfs:comment": "The practice-area term from the PracticeAreas list.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:audience",
+      "@type": "rdf:Property",
+      "rdfs:label": "audience",
+      "rdfs:comment": "Dual-publish of actsFor, as Audience + audienceType text.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:offers",
+      "@type": "rdf:Property",
+      "rdfs:label": "offers",
+      "rdfs:comment": "Initial consultation and any published fixed fee, as Offer.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:serviceOutput",
+      "@type": "rdf:Property",
+      "rdfs:label": "serviceOutput",
+      "rdfs:comment": "What the client gets, e.g. an adjudication determination or a signed contract.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:isRelatedTo",
+      "@type": "rdf:Property",
+      "rdfs:label": "isRelatedTo",
+      "rdfs:comment": "Sibling matter types.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:availableChannel",
+      "@type": "rdf:Property",
+      "rdfs:label": "availableChannel",
+      "rdfs:comment": "In person, phone, video.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Low",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:hoursAvailable",
+      "@type": "rdf:Property",
+      "rdfs:label": "hoursAvailable",
+      "rdfs:comment": "Urgent or after-hours help, if offered.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Low",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:jobTitle",
+      "@type": "rdf:Property",
+      "rdfs:label": "jobTitle",
+      "rdfs:comment": "Partner, Principal, Senior Associate, Lawyer.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:worksFor",
+      "@type": "rdf:Property",
+      "rdfs:label": "worksFor",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:hasCredential",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasCredential",
+      "rdfs:comment": "Admission, practising certificate, accredited specialisation.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:hasOccupation",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasOccupation",
+      "rdfs:comment": "Occupation with an ANZSCO/OSCA code.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:alumniOf",
+      "@type": "rdf:Property",
+      "rdfs:label": "alumniOf",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:knowsLanguage",
+      "@type": "rdf:Property",
+      "rdfs:label": "knowsLanguage",
+      "rdfs:comment": "Buyers ask for lawyers who speak their language.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:workLocation",
+      "@type": "rdf:Property",
+      "rdfs:label": "workLocation",
+      "rdfs:comment": "The office the lawyer works from (the office LegalService node).",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:image",
+      "@type": "rdf:Property",
+      "rdfs:label": "image",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:award",
+      "@type": "rdf:Property",
+      "rdfs:label": "award",
+      "rdfs:comment": "Only real, verifiable awards.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        },
+        {
+          "@id": "schema:LegalService"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Low",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:credentialCategory",
+      "@type": "rdf:Property",
+      "rdfs:label": "credentialCategory",
+      "rdfs:comment": "Admission / Practising certificate / Accredited specialist.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:EducationalOccupationalCredential"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:recognizedBy",
+      "@type": "rdf:Property",
+      "rdfs:label": "recognizedBy",
+      "rdfs:comment": "Court (admission), regulator (practising certificate), law society (specialisation).",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:EducationalOccupationalCredential"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:validIn",
+      "@type": "rdf:Property",
+      "rdfs:label": "validIn",
+      "rdfs:comment": "The state where it is valid.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:EducationalOccupationalCredential"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:about",
+      "@type": "rdf:Property",
+      "rdfs:label": "about",
+      "rdfs:comment": "Credential: the specialist area. Page: the main Service it is about.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:EducationalOccupationalCredential"
+        },
+        {
+          "@id": "schema:WebPage"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:occupationalCategory",
+      "@type": "rdf:Property",
+      "rdfs:label": "occupationalCategory",
+      "rdfs:comment": "ANZSCO or OSCA code as CategoryCode.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Occupation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:occupationLocation",
+      "@type": "rdf:Property",
+      "rdfs:label": "occupationLocation",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Occupation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Low",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:mentions",
+      "@type": "rdf:Property",
+      "rdfs:label": "mentions",
+      "rdfs:comment": "Every Act, body and legal term named in the visible text.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:WebPage"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:reviewedBy",
+      "@type": "rdf:Property",
+      "rdfs:label": "reviewedBy",
+      "rdfs:comment": "The lawyer who checked the page. Legal content must show this.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:WebPage"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:lastReviewed",
+      "@type": "rdf:Property",
+      "rdfs:label": "lastReviewed",
+      "rdfs:comment": "Law changes. Buyers and AI need to know the page is current.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:WebPage"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:citation",
+      "@type": "rdf:Property",
+      "rdfs:label": "citation",
+      "rdfs:comment": "The Acts the page relies on (dual-publish of governingLegislation).",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:WebPage"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:author",
+      "@type": "rdf:Property",
+      "rdfs:label": "author",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:WebPage"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:dateModified",
+      "@type": "rdf:Property",
+      "rdfs:label": "dateModified",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:WebPage"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:alternateName",
+      "@type": "rdf:Property",
+      "rdfs:label": "alternateName",
+      "rdfs:comment": "Short names people use: 'SOPA', 'VCAT'.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Legislation"
+        },
+        {
+          "@id": "schema:GovernmentOrganization"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:legislationJurisdiction",
+      "@type": "rdf:Property",
+      "rdfs:label": "legislationJurisdiction",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Legislation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:legislationIdentifier",
+      "@type": "rdf:Property",
+      "rdfs:label": "legislationIdentifier",
+      "rdfs:comment": "Act number, e.g. 'No. 15 of 2002'.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Legislation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:legislationType",
+      "@type": "rdf:Property",
+      "rdfs:label": "legislationType",
+      "rdfs:comment": "Act, Regulations, section.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Legislation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:legislationLegalForce",
+      "@type": "rdf:Property",
+      "rdfs:label": "legislationLegalForce",
+      "rdfs:comment": "InForce / NotInForce / PartiallyInForce.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Legislation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:isPartOf",
+      "@type": "rdf:Property",
+      "rdfs:label": "isPartOf",
+      "rdfs:comment": "A section node points to its Act.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Legislation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:inDefinedTermSet",
+      "@type": "rdf:Property",
+      "rdfs:label": "inDefinedTermSet",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:termCode",
+      "@type": "rdf:Property",
+      "rdfs:label": "termCode",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Low",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:price",
+      "@type": "rdf:Property",
+      "rdfs:label": "price",
+      "rdfs:comment": "Only when the firm publishes the price.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Offer"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:priceCurrency",
+      "@type": "rdf:Property",
+      "rdfs:label": "priceCurrency",
+      "rdfs:comment": "AUD.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Offer"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:itemOffered",
+      "@type": "rdf:Property",
+      "rdfs:label": "itemOffered",
+      "rdfs:comment": "Standard schema.org property.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Offer"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "High",
+      "legal:module": "core"
+    },
+    {
+      "@id": "schema:priceSpecification",
+      "@type": "rdf:Property",
+      "rdfs:label": "priceSpecification",
+      "rdfs:comment": "Hourly rate as UnitPriceSpecification with unitText 'hour'.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Offer"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://schema.org"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core"
+    },
+    {
+      "@id": "legal:TimeLimit",
+      "@type": "rdfs:Class",
+      "rdfs:label": "TimeLimit",
+      "rdfs:comment": "A legal time limit: a step that must be done within a set time, counted from a set event, under a named law.",
+      "rdfs:subClassOf": {
+        "@id": "schema:StructuredValue"
+      }
+    },
+    {
+      "@id": "legal:actsFor",
+      "@type": "rdf:Property",
+      "rdfs:label": "actsFor",
+      "rdfs:comment": "A party role the firm or lawyer acts for in this kind of matter. Value from the PartyRoles list.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "Do you act for subcontractors / homeowners / builders?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "audience (Audience + audienceType text)"
+    },
+    {
+      "@id": "legal:feeArrangement",
+      "@type": "rdf:Property",
+      "rdfs:label": "feeArrangement",
+      "rdfs:comment": "How the firm charges for this kind of matter. Value from the FeeArrangements list.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:Offer"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "Is it a fixed fee? Do you charge by the hour? Is the first meeting free?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "offers → Offer with price / priceSpecification, when a price is published"
+    },
+    {
+      "@id": "legal:disputeProcess",
+      "@type": "rdf:Property",
+      "rdfs:label": "disputeProcess",
+      "rdfs:comment": "A dispute-resolution process the service can use or lead to. Value from the DisputeProcesses list.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "Will this go to court? Can it be settled by mediation or adjudication?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:forum",
+      "@type": "rdf:Property",
+      "rdfs:label": "forum",
+      "rdfs:comment": "A court, tribunal, government scheme or appointing body where this kind of matter is decided or resolved.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:GovernmentOrganization"
+        },
+        {
+          "@id": "schema:Organization"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "Which court or tribunal hears this? Who appoints the adjudicator?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "WebPage.mentions"
+    },
+    {
+      "@id": "legal:governingLegislation",
+      "@type": "rdf:Property",
+      "rdfs:label": "governingLegislation",
+      "rdfs:comment": "An Act, regulation or section that governs this kind of matter or defines this term.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:Legislation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "Which law covers my situation?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "WebPage.citation"
+    },
+    {
+      "@id": "legal:hasTimeLimit",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasTimeLimit",
+      "rdfs:comment": "A legal time limit that applies. Every practice area has these (limitation periods, response deadlines).",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:Legislation"
+        },
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "legal:TimeLimit"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "How long do I have to respond / to claim / to appeal?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:appliesToStep",
+      "@type": "rdf:Property",
+      "rdfs:label": "appliesToStep",
+      "rdfs:comment": "The step that must be done in time, e.g. 'Payment schedule'.",
+      "schema:domainIncludes": [
+        {
+          "@id": "legal:TimeLimit"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "(part of a time limit)",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:timeAllowed",
+      "@type": "rdf:Property",
+      "rdfs:label": "timeAllowed",
+      "rdfs:comment": "How much time. QuantitativeValue with value and unitText, e.g. 10 + 'business days'.",
+      "schema:domainIncludes": [
+        {
+          "@id": "legal:TimeLimit"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:QuantitativeValue"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "(part of a time limit)",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:countedFrom",
+      "@type": "rdf:Property",
+      "rdfs:label": "countedFrom",
+      "rdfs:comment": "The event the time runs from, e.g. 'Payment claim served'.",
+      "schema:domainIncludes": [
+        {
+          "@id": "legal:TimeLimit"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "(part of a time limit)",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:legalSource",
+      "@type": "rdf:Property",
+      "rdfs:label": "legalSource",
+      "rdfs:comment": "The Act or section that sets the time limit. Use a Legislation node for the section, isPartOf the Act.",
+      "schema:domainIncludes": [
+        {
+          "@id": "legal:TimeLimit"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:Legislation"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "(part of a time limit)",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:consequenceIfMissed",
+      "@type": "rdf:Property",
+      "rdfs:label": "consequenceIfMissed",
+      "rdfs:comment": "Plain statement of what happens if the step is late or missed.",
+      "schema:domainIncludes": [
+        {
+          "@id": "legal:TimeLimit"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:Text"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core",
+      "legal:answersQuestion": "What happens if I miss the deadline?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:typicalDuration",
+      "@type": "rdf:Property",
+      "rdfs:label": "typicalDuration",
+      "rdfs:comment": "The usual time from instruction to outcome, as a range. Must come from the firm, not a guess.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:Duration"
+        },
+        {
+          "@id": "schema:QuantitativeValue"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core",
+      "legal:answersQuestion": "How long will it take?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:matterValueRange",
+      "@type": "rdf:Property",
+      "rdfs:label": "matterValueRange",
+      "rdfs:comment": "The claim or deal values the firm usually handles for this service (MonetaryAmount with minValue / maxValue).",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:MonetaryAmount"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core",
+      "legal:answersQuestion": "Do you take small claims? Is my matter big enough?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:dateAdmitted",
+      "@type": "rdf:Property",
+      "rdfs:label": "dateAdmitted",
+      "rdfs:comment": "Date the lawyer was admitted to practise. schema.org credentials have no award date.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Person"
+        },
+        {
+          "@id": "schema:EducationalOccupationalCredential"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:Date"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "How experienced is the lawyer?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:contractForm",
+      "@type": "rdf:Property",
+      "rdfs:label": "contractForm",
+      "rdfs:comment": "A standard-form contract the firm drafts, reviews or disputes. Value: a CreativeWork node for the contract form.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:LegalService"
+        },
+        {
+          "@id": "schema:Person"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:CreativeWork"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "construction",
+      "legal:answersQuestion": "Can you review my HIA / Master Builders / AS 4000 contract?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "knowsAbout on the firm and the lawyer"
+    },
+    {
+      "@id": "legal:projectType",
+      "@type": "rdf:Property",
+      "rdfs:label": "projectType",
+      "rdfs:comment": "The kind of building project the service covers. Value from the ProjectTypes list.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "construction",
+      "legal:answersQuestion": "Do you handle home builds, renovations, apartments or commercial projects?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:PartyRoles",
+      "@type": "schema:DefinedTermSet",
+      "schema:name": "Party roles",
+      "schema:hasDefinedTerm": [
+        {
+          "@id": "legal:PartyRoles-homeowner"
+        },
+        {
+          "@id": "legal:PartyRoles-owners-corporation"
+        },
+        {
+          "@id": "legal:PartyRoles-builder"
+        },
+        {
+          "@id": "legal:PartyRoles-head-contractor"
+        },
+        {
+          "@id": "legal:PartyRoles-subcontractor"
+        },
+        {
+          "@id": "legal:PartyRoles-supplier"
+        },
+        {
+          "@id": "legal:PartyRoles-developer"
+        },
+        {
+          "@id": "legal:PartyRoles-consultant"
+        }
+      ]
+    },
+    {
+      "@id": "legal:PartyRoles-homeowner",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Homeowner",
+      "schema:termCode": "homeowner",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PartyRoles"
+      },
+      "schema:description": "A person who owns, or is building or renovating, their home."
+    },
+    {
+      "@id": "legal:PartyRoles-owners-corporation",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Owners corporation",
+      "schema:termCode": "owners-corporation",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PartyRoles"
+      },
+      "schema:description": "The body that manages common property in a strata or apartment building."
+    },
+    {
+      "@id": "legal:PartyRoles-builder",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Builder",
+      "schema:termCode": "builder",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PartyRoles"
+      },
+      "schema:description": "A registered builder carrying out or managing building work."
+    },
+    {
+      "@id": "legal:PartyRoles-head-contractor",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Head contractor",
+      "schema:termCode": "head-contractor",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PartyRoles"
+      },
+      "schema:description": "The contractor engaged directly by the owner or principal."
+    },
+    {
+      "@id": "legal:PartyRoles-subcontractor",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Subcontractor",
+      "schema:termCode": "subcontractor",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PartyRoles"
+      },
+      "schema:description": "A contractor engaged by another contractor."
+    },
+    {
+      "@id": "legal:PartyRoles-supplier",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Supplier",
+      "schema:termCode": "supplier",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PartyRoles"
+      },
+      "schema:description": "A person who supplies goods or materials for building work."
+    },
+    {
+      "@id": "legal:PartyRoles-developer",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Property developer",
+      "schema:termCode": "developer",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PartyRoles"
+      },
+      "schema:description": "A person or company developing property for sale or lease."
+    },
+    {
+      "@id": "legal:PartyRoles-consultant",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Building consultant",
+      "schema:termCode": "consultant",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PartyRoles"
+      },
+      "schema:description": "An architect, engineer, surveyor or other design or certifying professional."
+    },
+    {
+      "@id": "legal:FeeArrangements",
+      "@type": "schema:DefinedTermSet",
+      "schema:name": "Fee arrangements",
+      "schema:hasDefinedTerm": [
+        {
+          "@id": "legal:FeeArrangements-fixed-fee"
+        },
+        {
+          "@id": "legal:FeeArrangements-staged-fixed-fee"
+        },
+        {
+          "@id": "legal:FeeArrangements-hourly-rate"
+        },
+        {
+          "@id": "legal:FeeArrangements-capped-fee"
+        },
+        {
+          "@id": "legal:FeeArrangements-conditional-fee"
+        },
+        {
+          "@id": "legal:FeeArrangements-free-initial-consultation"
+        }
+      ]
+    },
+    {
+      "@id": "legal:FeeArrangements-fixed-fee",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Fixed fee",
+      "schema:termCode": "fixed-fee",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:FeeArrangements"
+      },
+      "schema:description": "One agreed price for a defined piece of work."
+    },
+    {
+      "@id": "legal:FeeArrangements-staged-fixed-fee",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Staged fixed fee",
+      "schema:termCode": "staged-fixed-fee",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:FeeArrangements"
+      },
+      "schema:description": "A fixed price per stage of the matter."
+    },
+    {
+      "@id": "legal:FeeArrangements-hourly-rate",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Hourly rate",
+      "schema:termCode": "hourly-rate",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:FeeArrangements"
+      },
+      "schema:description": "Charged by time spent, at a stated hourly rate."
+    },
+    {
+      "@id": "legal:FeeArrangements-capped-fee",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Capped fee",
+      "schema:termCode": "capped-fee",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:FeeArrangements"
+      },
+      "schema:description": "Charged by time, up to an agreed maximum."
+    },
+    {
+      "@id": "legal:FeeArrangements-conditional-fee",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Conditional fee",
+      "schema:termCode": "conditional-fee",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:FeeArrangements"
+      },
+      "schema:description": "Fees payable only on a successful outcome, where the law allows it."
+    },
+    {
+      "@id": "legal:FeeArrangements-free-initial-consultation",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Free initial consultation",
+      "schema:termCode": "free-initial-consultation",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:FeeArrangements"
+      },
+      "schema:description": "A first meeting at no charge."
+    },
+    {
+      "@id": "legal:DisputeProcesses",
+      "@type": "schema:DefinedTermSet",
+      "schema:name": "Dispute processes",
+      "schema:hasDefinedTerm": [
+        {
+          "@id": "legal:DisputeProcesses-negotiation"
+        },
+        {
+          "@id": "legal:DisputeProcesses-mediation"
+        },
+        {
+          "@id": "legal:DisputeProcesses-conciliation"
+        },
+        {
+          "@id": "legal:DisputeProcesses-adjudication"
+        },
+        {
+          "@id": "legal:DisputeProcesses-tribunal"
+        },
+        {
+          "@id": "legal:DisputeProcesses-litigation"
+        },
+        {
+          "@id": "legal:DisputeProcesses-arbitration"
+        },
+        {
+          "@id": "legal:DisputeProcesses-expert-determination"
+        }
+      ]
+    },
+    {
+      "@id": "legal:DisputeProcesses-negotiation",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Negotiation",
+      "schema:termCode": "negotiation",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DisputeProcesses"
+      },
+      "schema:description": "Parties settle directly or through lawyers."
+    },
+    {
+      "@id": "legal:DisputeProcesses-mediation",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Mediation",
+      "schema:termCode": "mediation",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DisputeProcesses"
+      },
+      "schema:description": "A neutral mediator helps the parties reach agreement.",
+      "skos:closeMatch": [
+        {
+          "@id": "https://folio.openlegalstandard.org/R9zgcjBBIdWMnwIR8nqsoS8"
+        }
+      ]
+    },
+    {
+      "@id": "legal:DisputeProcesses-conciliation",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Conciliation",
+      "schema:termCode": "conciliation",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DisputeProcesses"
+      },
+      "schema:description": "A government conciliator helps the parties reach agreement."
+    },
+    {
+      "@id": "legal:DisputeProcesses-adjudication",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Statutory adjudication",
+      "schema:termCode": "adjudication",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DisputeProcesses"
+      },
+      "schema:description": "A fast, binding interim decision on a payment dispute under security of payment law.",
+      "skos:broadMatch": [
+        {
+          "@id": "http://www.wikidata.org/entity/Q357789"
+        }
+      ],
+      "skos:relatedMatch": [
+        {
+          "@id": "http://www.wikidata.org/entity/Q7445053"
+        }
+      ]
+    },
+    {
+      "@id": "legal:DisputeProcesses-tribunal",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Tribunal hearing",
+      "schema:termCode": "tribunal",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DisputeProcesses"
+      },
+      "schema:description": "A hearing and decision by a tribunal."
+    },
+    {
+      "@id": "legal:DisputeProcesses-litigation",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Court litigation",
+      "schema:termCode": "litigation",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DisputeProcesses"
+      },
+      "schema:description": "Proceedings in a court.",
+      "skos:closeMatch": [
+        {
+          "@id": "https://folio.openlegalstandard.org/R79LjWBKHCdmQKEW6zPY8Co"
+        }
+      ]
+    },
+    {
+      "@id": "legal:DisputeProcesses-arbitration",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Arbitration",
+      "schema:termCode": "arbitration",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DisputeProcesses"
+      },
+      "schema:description": "A private, binding decision by an arbitrator.",
+      "skos:closeMatch": [
+        {
+          "@id": "https://folio.openlegalstandard.org/RXO2u2WBkUUcEG1jczLIcA"
+        }
+      ]
+    },
+    {
+      "@id": "legal:DisputeProcesses-expert-determination",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Expert determination",
+      "schema:termCode": "expert-determination",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DisputeProcesses"
+      },
+      "schema:description": "An expert decides a technical question, usually by contract."
+    },
+    {
+      "@id": "legal:ProjectTypes",
+      "@type": "schema:DefinedTermSet",
+      "schema:name": "Project types (construction module)",
+      "schema:hasDefinedTerm": [
+        {
+          "@id": "legal:ProjectTypes-domestic-new-home"
+        },
+        {
+          "@id": "legal:ProjectTypes-domestic-renovation"
+        },
+        {
+          "@id": "legal:ProjectTypes-apartment-strata"
+        },
+        {
+          "@id": "legal:ProjectTypes-commercial"
+        }
+      ]
+    },
+    {
+      "@id": "legal:ProjectTypes-domestic-new-home",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "New home build",
+      "schema:termCode": "domestic-new-home",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:ProjectTypes"
+      },
+      "schema:description": "Domestic building work to build a new home."
+    },
+    {
+      "@id": "legal:ProjectTypes-domestic-renovation",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Home renovation or extension",
+      "schema:termCode": "domestic-renovation",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:ProjectTypes"
+      },
+      "schema:description": "Domestic building work on an existing home."
+    },
+    {
+      "@id": "legal:ProjectTypes-apartment-strata",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Apartment or strata building",
+      "schema:termCode": "apartment-strata",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:ProjectTypes"
+      },
+      "schema:description": "Multi-owner residential buildings and their common property.",
+      "skos:relatedMatch": [
+        {
+          "@id": "http://www.wikidata.org/entity/Q5978901"
+        }
+      ]
+    },
+    {
+      "@id": "legal:ProjectTypes-commercial",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Commercial construction",
+      "schema:termCode": "commercial",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:ProjectTypes"
+      },
+      "schema:description": "Non-residential building projects."
+    },
+    {
+      "@id": "legal:PracticeAreas",
+      "@type": "schema:DefinedTermSet",
+      "schema:name": "Practice areas",
+      "schema:hasDefinedTerm": [
+        {
+          "@id": "legal:PracticeAreas-building-construction"
+        },
+        {
+          "@id": "legal:PracticeAreas-family"
+        },
+        {
+          "@id": "legal:PracticeAreas-wills-estates"
+        },
+        {
+          "@id": "legal:PracticeAreas-employment"
+        },
+        {
+          "@id": "legal:PracticeAreas-business-commercial"
+        },
+        {
+          "@id": "legal:PracticeAreas-debt-recovery"
+        }
+      ]
+    },
+    {
+      "@id": "legal:PracticeAreas-building-construction",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Building and construction law",
+      "schema:termCode": "building-construction",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PracticeAreas"
+      },
+      "schema:description": "Law of building contracts, payment, defects and building disputes.",
+      "skos:closeMatch": [
+        {
+          "@id": "https://folio.openlegalstandard.org/R7o4TiXsYQ6vV6MrJMTfnS7"
+        },
+        {
+          "@id": "http://www.wikidata.org/entity/Q811705"
+        }
+      ]
+    },
+    {
+      "@id": "legal:PracticeAreas-family",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Family law",
+      "schema:termCode": "family",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PracticeAreas"
+      },
+      "schema:description": "Law of separation, divorce, parenting and property settlement."
+    },
+    {
+      "@id": "legal:PracticeAreas-wills-estates",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Wills and estates",
+      "schema:termCode": "wills-estates",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PracticeAreas"
+      },
+      "schema:description": "Law of wills, estate planning, probate and will disputes."
+    },
+    {
+      "@id": "legal:PracticeAreas-employment",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Employment law",
+      "schema:termCode": "employment",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PracticeAreas"
+      },
+      "schema:description": "Law of employment contracts, dismissal and workplace rights."
+    },
+    {
+      "@id": "legal:PracticeAreas-business-commercial",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Business and commercial law",
+      "schema:termCode": "business-commercial",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PracticeAreas"
+      },
+      "schema:description": "Law of buying, selling and running a business, and commercial contracts."
+    },
+    {
+      "@id": "legal:PracticeAreas-debt-recovery",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Debt recovery",
+      "schema:termCode": "debt-recovery",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PracticeAreas"
+      },
+      "schema:description": "Recovering money owed, by demand, negotiation or court action."
+    }
+  ]
+}
