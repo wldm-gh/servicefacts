@@ -14,12 +14,12 @@
     "owl:Ontology"
   ],
   "owl:versionIRI": {
-    "@id": "https://w3id.org/servicefacts/legal/0.1"
+    "@id": "https://w3id.org/servicefacts/legal/0.2"
   },
-  "owl:versionInfo": "0.1",
+  "owl:versionInfo": "0.2",
   "schema:name": "Service Facts: Legal Services Profile",
-  "schema:version": "0.1",
-  "schema:dateModified": "2026-10-20",
+  "schema:version": "0.2",
+  "schema:dateModified": "2026-11-24",
   "schema:license": "https://creativecommons.org/licenses/by/4.0/",
   "schema:maintainer": {
     "@type": "schema:Organization",
@@ -29,15 +29,16 @@
   },
   "schema:discussionUrl": "https://github.com/wldm-gh/servicefacts/issues",
   "schema:creativeWorkStatus": "Draft",
-  "schema:description": "Draft. Facts buyers ask about legal services, and how to state and mark them up. Standard schema.org first; custom terms only where schema.org has no home. v0.1 was built for Australian building and construction law.",
+  "schema:description": "Draft. Facts buyers ask about legal services, and how to state and mark them up. Standard schema.org first; custom terms only where schema.org has no home. v0.1 was built for Australian building and construction law. v0.2 adds US personal injury terms.",
   "legal:propertyIndex": {
     "schemaOrgProperties": 58,
-    "customProperties": 16,
-    "classes": 1,
-    "termSets": 5,
+    "customProperties": 23,
+    "classes": 2,
+    "termSets": 6,
     "modules": [
       "construction",
-      "core"
+      "core",
+      "personal-injury"
     ]
   },
   "@graph": [
@@ -988,7 +989,7 @@
       "@id": "schema:priceCurrency",
       "@type": "rdf:Property",
       "rdfs:label": "priceCurrency",
-      "rdfs:comment": "AUD.",
+      "rdfs:comment": "ISO 4217 code, e.g. AUD or USD.",
       "schema:domainIncludes": [
         {
           "@id": "schema:Offer"
@@ -1037,6 +1038,15 @@
       "@type": "rdfs:Class",
       "rdfs:label": "TimeLimit",
       "rdfs:comment": "A legal time limit: a step that must be done within a set time, counted from a set event, under a named law.",
+      "rdfs:subClassOf": {
+        "@id": "schema:StructuredValue"
+      }
+    },
+    {
+      "@id": "legal:DamagesCap",
+      "@type": "rdfs:Class",
+      "rdfs:label": "DamagesCap",
+      "rdfs:comment": "What the law says about a limit on one kind of damages in one kind of case: a maximum amount for a stated period, under a named law, or that there is no limit.",
       "rdfs:subClassOf": {
         "@id": "schema:StructuredValue"
       }
@@ -1286,10 +1296,13 @@
       "@id": "legal:legalSource",
       "@type": "rdf:Property",
       "rdfs:label": "legalSource",
-      "rdfs:comment": "The Act or section that sets the time limit. Use a Legislation node for the section, isPartOf the Act.",
+      "rdfs:comment": "The Act or section that sets the time limit or the damages cap. Use a Legislation node for the section, isPartOf the Act.",
       "schema:domainIncludes": [
         {
           "@id": "legal:TimeLimit"
+        },
+        {
+          "@id": "legal:DamagesCap"
         }
       ],
       "schema:rangeIncludes": [
@@ -1302,7 +1315,7 @@
       },
       "legal:priority": "High",
       "legal:module": "core",
-      "legal:answersQuestion": "(part of a time limit)",
+      "legal:answersQuestion": "(part of a time limit or a damages cap)",
       "legal:visibleTextRequired": true,
       "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
     },
@@ -1464,6 +1477,181 @@
       "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
     },
     {
+      "@id": "legal:mustProve",
+      "@type": "rdf:Property",
+      "rdfs:label": "mustProve",
+      "rdfs:comment": "One thing the person bringing the claim must prove to win. Repeat the property for each one. Put it on the Service (the kind of claim), or on a DefinedTerm for one legal route (for example 'Negligence' or 'Strict liability') when a page gives more than one route. Name each element in the page's own words. Not for filing steps, defences or evidence to keep.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        },
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "High",
+      "legal:module": "core",
+      "legal:answersQuestion": "What do I have to prove to win? Do I have a case?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "WebPage.mentions for each element term"
+    },
+    {
+      "@id": "legal:injuryThreshold",
+      "@type": "rdf:Property",
+      "rdfs:label": "injuryThreshold",
+      "rdfs:comment": "A level of injury the law requires before this kind of claim can be brought, or before one kind of damages can be claimed in it. Say which in the term's description. If there are several values, each is one level that qualifies on its own. Leave the property off where the law sets no threshold.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "personal-injury",
+      "legal:answersQuestion": "Is my injury serious enough to sue?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "WebPage.mentions for the term; citation for the statute"
+    },
+    {
+      "@id": "legal:damagesAvailable",
+      "@type": "rdf:Property",
+      "rdfs:label": "damagesAvailable",
+      "rdfs:comment": "A kind of money compensation that can be claimed in this kind of case. Value from the DamageTypes list. Repeat for each kind. Not for insurance benefits paid regardless of fault, and not for amounts or caps (see damagesCap).",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core",
+      "legal:answersQuestion": "What can I get compensation for? Can I sue for pain and suffering?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "WebPage.mentions"
+    },
+    {
+      "@id": "legal:damagesCap",
+      "@type": "rdf:Property",
+      "rdfs:label": "damagesCap",
+      "rdfs:comment": "What the law says about a limit (a cap) on one kind of damages in this kind of case: the limit, or that there is none. Repeat for each cap, for example a lower and a higher cap. Not for fee caps, insurance policy limits or benefit limits, and not for what a case is worth.",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Service"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "legal:DamagesCap"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core",
+      "legal:answersQuestion": "Is there a limit on how much I can get? Is there a cap on pain and suffering damages?",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking.",
+      "legal:dualPublishAs": "WebPage.citation for the law that sets the cap"
+    },
+    {
+      "@id": "legal:appliesToDamageType",
+      "@type": "rdf:Property",
+      "rdfs:label": "appliesToDamageType",
+      "rdfs:comment": "The kind of damages the cap limits. Value from the DamageTypes list.",
+      "schema:domainIncludes": [
+        {
+          "@id": "legal:DamagesCap"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DefinedTerm"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core",
+      "legal:answersQuestion": "(part of a damages cap)",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:capAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": "capAmount",
+      "rdfs:comment": "The maximum amount. MonetaryAmount with value and currency, and validFrom / validThrough when the amount changes from year to year. Leave it off when the page states no amount.",
+      "schema:domainIncludes": [
+        {
+          "@id": "legal:DamagesCap"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:MonetaryAmount"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core",
+      "legal:answersQuestion": "(part of a damages cap)",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
+      "@id": "legal:isCapped",
+      "@type": "rdf:Property",
+      "rdfs:label": "isCapped",
+      "rdfs:comment": "false when the page says the law sets no limit on this kind of damages. true when the page says there is a limit. Leave it off when the page does not say.",
+      "schema:domainIncludes": [
+        {
+          "@id": "legal:DamagesCap"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:Boolean"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "https://w3id.org/servicefacts/legal"
+      },
+      "legal:priority": "Medium",
+      "legal:module": "core",
+      "legal:answersQuestion": "(part of a damages cap)",
+      "legal:visibleTextRequired": true,
+      "legal:priorityEvidence": "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking."
+    },
+    {
       "@id": "legal:PartyRoles",
       "@type": "schema:DefinedTermSet",
       "schema:name": "Party roles",
@@ -1595,6 +1783,9 @@
           "@id": "legal:FeeArrangements-conditional-fee"
         },
         {
+          "@id": "legal:FeeArrangements-contingency-fee"
+        },
+        {
           "@id": "legal:FeeArrangements-free-initial-consultation"
         }
       ]
@@ -1648,6 +1839,16 @@
         "@id": "legal:FeeArrangements"
       },
       "schema:description": "Fees payable only on a successful outcome, where the law allows it."
+    },
+    {
+      "@id": "legal:FeeArrangements-contingency-fee",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Contingency fee",
+      "schema:termCode": "contingency-fee",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:FeeArrangements"
+      },
+      "schema:description": "The lawyer is paid a share of the money recovered for the client, and is paid nothing for their work if no money is recovered."
     },
     {
       "@id": "legal:FeeArrangements-free-initial-consultation",
@@ -1881,6 +2082,9 @@
         },
         {
           "@id": "legal:PracticeAreas-debt-recovery"
+        },
+        {
+          "@id": "legal:PracticeAreas-personal-injury"
         }
       ]
     },
@@ -1951,6 +2155,179 @@
         "@id": "legal:PracticeAreas"
       },
       "schema:description": "Recovering money owed, by demand, negotiation or court action."
+    },
+    {
+      "@id": "legal:PracticeAreas-personal-injury",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Personal injury law",
+      "schema:termCode": "personal-injury",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:PracticeAreas"
+      },
+      "schema:description": "Law of claims for money when a person is hurt, or dies, because someone else did something wrong or was careless."
+    },
+    {
+      "@id": "legal:DamageTypes",
+      "@type": "schema:DefinedTermSet",
+      "schema:name": "Damage types",
+      "schema:hasDefinedTerm": [
+        {
+          "@id": "legal:DamageTypes-economic-damages"
+        },
+        {
+          "@id": "legal:DamageTypes-non-economic-damages"
+        },
+        {
+          "@id": "legal:DamageTypes-medical-expenses"
+        },
+        {
+          "@id": "legal:DamageTypes-lost-income"
+        },
+        {
+          "@id": "legal:DamageTypes-loss-of-earning-capacity"
+        },
+        {
+          "@id": "legal:DamageTypes-pain-and-suffering"
+        },
+        {
+          "@id": "legal:DamageTypes-mental-anguish"
+        },
+        {
+          "@id": "legal:DamageTypes-loss-of-enjoyment-of-life"
+        },
+        {
+          "@id": "legal:DamageTypes-disfigurement"
+        },
+        {
+          "@id": "legal:DamageTypes-disability"
+        },
+        {
+          "@id": "legal:DamageTypes-loss-of-consortium"
+        },
+        {
+          "@id": "legal:DamageTypes-funeral-burial-expenses"
+        }
+      ]
+    },
+    {
+      "@id": "legal:DamageTypes-economic-damages",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Economic damages",
+      "schema:termCode": "economic-damages",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Money losses that can be counted, such as bills and lost pay."
+    },
+    {
+      "@id": "legal:DamageTypes-non-economic-damages",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Non-economic damages",
+      "schema:termCode": "non-economic-damages",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Losses that are not money but are paid for in money, such as pain and suffering."
+    },
+    {
+      "@id": "legal:DamageTypes-medical-expenses",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Medical expenses",
+      "schema:termCode": "medical-expenses",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "The cost of medical care caused by the injury, past and future."
+    },
+    {
+      "@id": "legal:DamageTypes-lost-income",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Lost income",
+      "schema:termCode": "lost-income",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Pay or earnings lost because of the injury."
+    },
+    {
+      "@id": "legal:DamageTypes-loss-of-earning-capacity",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Loss of earning capacity",
+      "schema:termCode": "loss-of-earning-capacity",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Less ability to earn money in the future because of the injury."
+    },
+    {
+      "@id": "legal:DamageTypes-pain-and-suffering",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Pain and suffering",
+      "schema:termCode": "pain-and-suffering",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Physical pain and suffering caused by the injury."
+    },
+    {
+      "@id": "legal:DamageTypes-mental-anguish",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Mental anguish",
+      "schema:termCode": "mental-anguish",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Emotional or psychological harm caused by the injury, such as fear, shock or anxiety."
+    },
+    {
+      "@id": "legal:DamageTypes-loss-of-enjoyment-of-life",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Loss of enjoyment of life",
+      "schema:termCode": "loss-of-enjoyment-of-life",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Being less able to take part in and enjoy everyday life."
+    },
+    {
+      "@id": "legal:DamageTypes-disfigurement",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Scarring and disfigurement",
+      "schema:termCode": "disfigurement",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Lasting scars or changes to how a person looks."
+    },
+    {
+      "@id": "legal:DamageTypes-disability",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Disability",
+      "schema:termCode": "disability",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Lasting loss of the ability to work or do everyday activities."
+    },
+    {
+      "@id": "legal:DamageTypes-loss-of-consortium",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Loss of consortium",
+      "schema:termCode": "loss-of-consortium",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "Loss of the companionship and support of a spouse or family member."
+    },
+    {
+      "@id": "legal:DamageTypes-funeral-burial-expenses",
+      "@type": "schema:DefinedTerm",
+      "schema:name": "Funeral and burial expenses",
+      "schema:termCode": "funeral-burial-expenses",
+      "schema:inDefinedTermSet": {
+        "@id": "legal:DamageTypes"
+      },
+      "schema:description": "The cost of a funeral and burial after a death."
     }
   ]
 }

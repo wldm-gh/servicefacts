@@ -149,10 +149,10 @@ Files: <a href="legal.jsonld">JSON-LD</a> · <a href="legal.ttl">Turtle</a> · {
 <div class="callout">
 <p><strong>Start here.</strong> schema.org cannot say some things buyers ask a law firm: who the firm acts for, how it charges,
 which process and tribunal a matter goes through, which law governs it, and the legal time limits.
-This vocabulary adds {len(legal.CUSTOM)} properties, {len(legal.CLASSES)} class and {len(legal.TERM_SETS)} value lists for those facts.
+This vocabulary adds {len(legal.CUSTOM)} properties, {len(legal.CLASSES)} {'class' if len(legal.CLASSES) == 1 else 'classes'} and {len(legal.TERM_SETS)} value lists for those facts.
 Use standard schema.org first. Use these terms only where schema.org has no home.</p>
 <p><strong>Status: draft.</strong> Version 0.x can still change. Term IDs never change and are never deleted.
-Version 0.1 was built for Australian building and construction law.</p>
+Version 0.1 was built for Australian building and construction law. Version 0.2 adds US personal injury terms.</p>
 </div>
 
 <h2 id="how-to-use">How to use it on a page</h2>
@@ -229,9 +229,17 @@ Version 0.1 was built for Australian building and construction law.</p>
         parts.append(f'<tr id="{term}"><td><code>{pfx}:{term}</code></td><td>{E(meaning)}</td></tr>')
     parts.append("</table></div>")
 
+    def version_href(ver):
+        if ver == v:
+            return "./" if frozen else f"{v}/"
+        return f"../{ver}/" if frozen else f"{ver}/"
+
+    version_rows = "\n".join(
+        f'<tr><td><a href="{version_href(ver)}">{E(ver)}</a></td><td>{E(date)}</td><td>{E(change)}</td></tr>'
+        for ver, date, change in legal.HISTORY)
     parts.append(f"""<h2 id="versions">Versions and changes</h2>
 <div class="tablewrap"><table><tr><th>Version</th><th>Date</th><th>Change</th></tr>
-<tr><td><a href="{'./' if frozen else f'{v}/'}">{E(v)}</a></td><td>{E(legal.DATE)}</td><td>First public draft.</td></tr>
+{version_rows}
 </table></div>
 <p>Rules: a term ID is never changed or deleted. A replaced term is marked <code>owl:deprecated</code> and
 <code>schema:supersededBy</code> its replacement. Each release gets a frozen copy.
@@ -303,7 +311,7 @@ def main():
     write(os.path.join(DOCS, "index.jsonld"), json.dumps(catalog(), indent=2) + "\n")
     write(os.path.join(DOCS, ".nojekyll"), "")
     print(f"Built legal v{legal.VERSION}: {len(legal.STANDARD)} schema.org, {len(legal.CUSTOM)} custom properties, "
-          f"{len(legal.CLASSES)} class, {len(legal.TERM_SETS)} value lists -> {DOCS}")
+          f"{len(legal.CLASSES)} class(es), {len(legal.TERM_SETS)} value lists -> {DOCS}")
 
 
 if __name__ == "__main__":

@@ -8,8 +8,13 @@ The vocabulary is an @graph of rdf:Property nodes, rdfs:Class nodes and
 schema:DefinedTermSet value lists. Term IDs are hash IDs under NS. A term ID
 never changes and is never deleted (see GOVERNANCE.md).
 """
-VERSION = "0.1"
-DATE = "2026-10-20"
+VERSION = "0.2"
+DATE = "2026-11-24"
+# Every version, newest first: (version, date, change). build.py prints this table.
+HISTORY = [
+    ("0.2", DATE, "US personal injury terms: what a claimant must prove, injury threshold, damage types, damages cap, contingency fee, personal injury practice area."),
+    ("0.1", "2026-10-20", "First public draft."),
+]
 NS = "https://w3id.org/servicefacts/legal#"
 PREFIX = "legal"  # short name for NS in JSON-LD. Change NS and PREFIX together.
 
@@ -86,7 +91,7 @@ STANDARD = [
     ("termCode", ["DefinedTerm"], "Low", ""),
     # Offers
     ("price", ["Offer"], "High", "Only when the firm publishes the price."),
-    ("priceCurrency", ["Offer"], "High", "AUD."),
+    ("priceCurrency", ["Offer"], "High", "ISO 4217 code, e.g. AUD or USD."),
     ("itemOffered", ["Offer"], "High", ""),
     ("priceSpecification", ["Offer"], "Medium", "Hourly rate as UnitPriceSpecification with unitText 'hour'."),
 ]
@@ -130,9 +135,9 @@ CUSTOM = [
     ("countedFrom", ["TimeLimit"], ["DefinedTerm"], "High", "core",
      "(part of a time limit)",
      "The event the time runs from, e.g. 'Payment claim served'.", ""),
-    ("legalSource", ["TimeLimit"], ["Legislation"], "High", "core",
-     "(part of a time limit)",
-     "The Act or section that sets the time limit. Use a Legislation node for the section, isPartOf the Act.", ""),
+    ("legalSource", ["TimeLimit", "DamagesCap"], ["Legislation"], "High", "core",
+     "(part of a time limit or a damages cap)",
+     "The Act or section that sets the time limit or the damages cap. Use a Legislation node for the section, isPartOf the Act.", ""),
     ("consequenceIfMissed", ["TimeLimit"], ["Text"], "Medium", "core",
      "What happens if I miss the deadline?",
      "Plain statement of what happens if the step is late or missed.", ""),
@@ -152,11 +157,51 @@ CUSTOM = [
     ("projectType", ["Service"], ["DefinedTerm"], "Medium", "construction",
      "Do you handle home builds, renovations, apartments or commercial projects?",
      "The kind of building project the service covers. Value from the ProjectTypes list.", ""),
+    # --- v0.2: personal injury fast path (US) ---
+    ("mustProve", ["Service", "DefinedTerm"], ["DefinedTerm"], "High", "core",
+     "What do I have to prove to win? Do I have a case?",
+     "One thing the person bringing the claim must prove to win. Repeat the property for each one. "
+     "Put it on the Service (the kind of claim), or on a DefinedTerm for one legal route (for example "
+     "'Negligence' or 'Strict liability') when a page gives more than one route. Name each element in the "
+     "page's own words. Not for filing steps, defences or evidence to keep.",
+     "WebPage.mentions for each element term"),
+    ("injuryThreshold", ["Service"], ["DefinedTerm"], "Medium", "personal-injury",
+     "Is my injury serious enough to sue?",
+     "A level of injury the law requires before this kind of claim can be brought, or before one kind of "
+     "damages can be claimed in it. Say which in the term's description. If there are several values, each "
+     "is one level that qualifies on its own. Leave the property off where the law sets no threshold.",
+     "WebPage.mentions for the term; citation for the statute"),
+    ("damagesAvailable", ["Service"], ["DefinedTerm"], "Medium", "core",
+     "What can I get compensation for? Can I sue for pain and suffering?",
+     "A kind of money compensation that can be claimed in this kind of case. Value from the DamageTypes "
+     "list. Repeat for each kind. Not for insurance benefits paid regardless of fault, and not for amounts "
+     "or caps (see damagesCap).",
+     "WebPage.mentions"),
+    ("damagesCap", ["Service"], ["DamagesCap"], "Medium", "core",
+     "Is there a limit on how much I can get? Is there a cap on pain and suffering damages?",
+     "What the law says about a limit (a cap) on one kind of damages in this kind of case: the limit, or "
+     "that there is none. Repeat for each cap, for example a lower and a higher cap. Not for fee caps, "
+     "insurance policy limits or benefit limits, and not for what a case is worth.",
+     "WebPage.citation for the law that sets the cap"),
+    ("appliesToDamageType", ["DamagesCap"], ["DefinedTerm"], "Medium", "core",
+     "(part of a damages cap)",
+     "The kind of damages the cap limits. Value from the DamageTypes list.", ""),
+    ("capAmount", ["DamagesCap"], ["MonetaryAmount"], "Medium", "core",
+     "(part of a damages cap)",
+     "The maximum amount. MonetaryAmount with value and currency, and validFrom / validThrough when the "
+     "amount changes from year to year. Leave it off when the page states no amount.", ""),
+    ("isCapped", ["DamagesCap"], ["Boolean"], "Medium", "core",
+     "(part of a damages cap)",
+     "false when the page says the law sets no limit on this kind of damages. true when the page says "
+     "there is a limit. Leave it off when the page does not say.", ""),
 ]
 
 CLASSES = [
     ("TimeLimit", "StructuredValue",
      "A legal time limit: a step that must be done within a set time, counted from a set event, under a named law."),
+    ("DamagesCap", "StructuredValue",
+     "What the law says about a limit on one kind of damages in one kind of case: a maximum amount for a stated "
+     "period, under a named law, or that there is no limit."),
 ]
 
 # ---------------------------------------------------------------------------
@@ -180,6 +225,7 @@ TERM_SETS = [
         ("hourly-rate", "Hourly rate", "Charged by time spent, at a stated hourly rate.", []),
         ("capped-fee", "Capped fee", "Charged by time, up to an agreed maximum.", []),
         ("conditional-fee", "Conditional fee", "Fees payable only on a successful outcome, where the law allows it.", []),
+        ("contingency-fee", "Contingency fee", "The lawyer is paid a share of the money recovered for the client, and is paid nothing for their work if no money is recovered.", []),
         ("free-initial-consultation", "Free initial consultation", "A first meeting at no charge.", []),
     ]),
     ("DisputeProcesses", "Dispute processes", [
@@ -205,6 +251,21 @@ TERM_SETS = [
         ("employment", "Employment law", "Law of employment contracts, dismissal and workplace rights.", []),
         ("business-commercial", "Business and commercial law", "Law of buying, selling and running a business, and commercial contracts.", []),
         ("debt-recovery", "Debt recovery", "Recovering money owed, by demand, negotiation or court action.", []),
+        ("personal-injury", "Personal injury law", "Law of claims for money when a person is hurt, or dies, because someone else did something wrong or was careless.", []),
+    ]),
+    ("DamageTypes", "Damage types", [
+        ("economic-damages", "Economic damages", "Money losses that can be counted, such as bills and lost pay.", []),
+        ("non-economic-damages", "Non-economic damages", "Losses that are not money but are paid for in money, such as pain and suffering.", []),
+        ("medical-expenses", "Medical expenses", "The cost of medical care caused by the injury, past and future.", []),
+        ("lost-income", "Lost income", "Pay or earnings lost because of the injury.", []),
+        ("loss-of-earning-capacity", "Loss of earning capacity", "Less ability to earn money in the future because of the injury.", []),
+        ("pain-and-suffering", "Pain and suffering", "Physical pain and suffering caused by the injury.", []),
+        ("mental-anguish", "Mental anguish", "Emotional or psychological harm caused by the injury, such as fear, shock or anxiety.", []),
+        ("loss-of-enjoyment-of-life", "Loss of enjoyment of life", "Being less able to take part in and enjoy everyday life.", []),
+        ("disfigurement", "Scarring and disfigurement", "Lasting scars or changes to how a person looks.", []),
+        ("disability", "Disability", "Lasting loss of the ability to work or do everyday activities.", []),
+        ("loss-of-consortium", "Loss of consortium", "Loss of the companionship and support of a spouse or family member.", []),
+        ("funeral-burial-expenses", "Funeral and burial expenses", "The cost of a funeral and burial after a death.", []),
     ]),
 ]
 
@@ -304,7 +365,7 @@ def build():
         "schema:creativeWorkStatus": "Draft",
         "schema:description": "Draft. Facts buyers ask about legal services, and how to state and mark them up. "
                               "Standard schema.org first; custom terms only where schema.org has no home. "
-                              "v0.1 was built for Australian building and construction law.",
+                              "v0.1 was built for Australian building and construction law. v0.2 adds US personal injury terms.",
         p("propertyIndex"): {
             "schemaOrgProperties": n_std, "customProperties": n_cus, "classes": len(CLASSES),
             "termSets": len(TERM_SETS),

@@ -19,7 +19,7 @@
       "@id": "https://w3id.org/servicefacts/legal",
       "@type": "schema:CreativeWork",
       "schema:name": "Service Facts: Legal Services Profile",
-      "schema:version": "0.1"
+      "schema:version": "0.2"
     }
   ]
 }

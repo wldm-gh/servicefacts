@@ -2,6 +2,18 @@
 
 ## Legal services
 
+### 0.2 (draft), 2026-11-24
+
+US personal injury terms. No term ID from 0.1 changed.
+
+- 7 new properties: `mustProve`, `injuryThreshold`, `damagesAvailable`, `damagesCap`, `appliesToDamageType`, `capAmount`, `isCapped`.
+- 1 new class: `DamagesCap`.
+- 1 new value list: DamageTypes (12).
+- 2 new values: `FeeArrangements-contingency-fee`, `PracticeAreas-personal-injury`.
+- `legalSource` can now also sit on a `DamagesCap` (the law that sets the cap). Its meaning for a `TimeLimit` is the same.
+- Guidance: `priceCurrency` is any ISO 4217 code (was "AUD").
+- No legal value is in the vocabulary. Every amount, threshold and element belongs to the page that states it.
+
 ### 0.1 (draft), 2026-10-20
 
 First public draft. Namespace `https://w3id.org/servicefacts/legal#`, prefix `legal:`.

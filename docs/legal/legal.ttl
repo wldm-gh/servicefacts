@@ -6,6 +6,11 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+legal:DamagesCap a rdfs:Class ;
+    rdfs:label "DamagesCap" ;
+    rdfs:comment "What the law says about a limit on one kind of damages in one kind of case: a maximum amount for a stated period, under a named law, or that there is no limit." ;
+    rdfs:subClassOf schema:StructuredValue .
+
 legal:TimeLimit a rdfs:Class ;
     rdfs:label "TimeLimit" ;
     rdfs:comment "A legal time limit: a step that must be done within a set time, counted from a set event, under a named law." ;
@@ -378,7 +383,7 @@ schema:price a rdf:Property ;
 
 schema:priceCurrency a rdf:Property ;
     rdfs:label "priceCurrency" ;
-    rdfs:comment "AUD." ;
+    rdfs:comment "ISO 4217 code, e.g. AUD or USD." ;
     schema:domainIncludes schema:Offer ;
     schema:isPartOf <https://schema.org> ;
     legal:module "core" ;
@@ -511,6 +516,18 @@ legal:actsFor a rdf:Property ;
     legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
     legal:visibleTextRequired true .
 
+legal:appliesToDamageType a rdf:Property ;
+    rdfs:label "appliesToDamageType" ;
+    rdfs:comment "The kind of damages the cap limits. Value from the DamageTypes list." ;
+    schema:domainIncludes legal:DamagesCap ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "(part of a damages cap)" ;
+    legal:module "core" ;
+    legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
 legal:appliesToStep a rdf:Property ;
     rdfs:label "appliesToStep" ;
     rdfs:comment "The step that must be done in time, e.g. 'Payment schedule'." ;
@@ -520,6 +537,18 @@ legal:appliesToStep a rdf:Property ;
     legal:answersQuestion "(part of a time limit)" ;
     legal:module "core" ;
     legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:capAmount a rdf:Property ;
+    rdfs:label "capAmount" ;
+    rdfs:comment "The maximum amount. MonetaryAmount with value and currency, and validFrom / validThrough when the amount changes from year to year. Leave it off when the page states no amount." ;
+    schema:domainIncludes legal:DamagesCap ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:MonetaryAmount ;
+    legal:answersQuestion "(part of a damages cap)" ;
+    legal:module "core" ;
+    legal:priority "Medium" ;
     legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
     legal:visibleTextRequired true .
 
@@ -559,6 +588,32 @@ legal:countedFrom a rdf:Property ;
     legal:answersQuestion "(part of a time limit)" ;
     legal:module "core" ;
     legal:priority "High" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:damagesAvailable a rdf:Property ;
+    rdfs:label "damagesAvailable" ;
+    rdfs:comment "A kind of money compensation that can be claimed in this kind of case. Value from the DamageTypes list. Repeat for each kind. Not for insurance benefits paid regardless of fault, and not for amounts or caps (see damagesCap)." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "What can I get compensation for? Can I sue for pain and suffering?" ;
+    legal:dualPublishAs "WebPage.mentions" ;
+    legal:module "core" ;
+    legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:damagesCap a rdf:Property ;
+    rdfs:label "damagesCap" ;
+    rdfs:comment "What the law says about a limit (a cap) on one kind of damages in this kind of case: the limit, or that there is none. Repeat for each cap, for example a lower and a higher cap. Not for fee caps, insurance policy limits or benefit limits, and not for what a case is worth." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes legal:DamagesCap ;
+    legal:answersQuestion "Is there a limit on how much I can get? Is there a cap on pain and suffering damages?" ;
+    legal:dualPublishAs "WebPage.citation for the law that sets the cap" ;
+    legal:module "core" ;
+    legal:priority "Medium" ;
     legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
     legal:visibleTextRequired true .
 
@@ -643,13 +698,39 @@ legal:hasTimeLimit a rdf:Property ;
     legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
     legal:visibleTextRequired true .
 
+legal:injuryThreshold a rdf:Property ;
+    rdfs:label "injuryThreshold" ;
+    rdfs:comment "A level of injury the law requires before this kind of claim can be brought, or before one kind of damages can be claimed in it. Say which in the term's description. If there are several values, each is one level that qualifies on its own. Leave the property off where the law sets no threshold." ;
+    schema:domainIncludes schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "Is my injury serious enough to sue?" ;
+    legal:dualPublishAs "WebPage.mentions for the term; citation for the statute" ;
+    legal:module "personal-injury" ;
+    legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:isCapped a rdf:Property ;
+    rdfs:label "isCapped" ;
+    rdfs:comment "false when the page says the law sets no limit on this kind of damages. true when the page says there is a limit. Leave it off when the page does not say." ;
+    schema:domainIncludes legal:DamagesCap ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:Boolean ;
+    legal:answersQuestion "(part of a damages cap)" ;
+    legal:module "core" ;
+    legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
 legal:legalSource a rdf:Property ;
     rdfs:label "legalSource" ;
-    rdfs:comment "The Act or section that sets the time limit. Use a Legislation node for the section, isPartOf the Act." ;
-    schema:domainIncludes legal:TimeLimit ;
+    rdfs:comment "The Act or section that sets the time limit or the damages cap. Use a Legislation node for the section, isPartOf the Act." ;
+    schema:domainIncludes legal:DamagesCap,
+        legal:TimeLimit ;
     schema:isPartOf <https://w3id.org/servicefacts/legal> ;
     schema:rangeIncludes schema:Legislation ;
-    legal:answersQuestion "(part of a time limit)" ;
+    legal:answersQuestion "(part of a time limit or a damages cap)" ;
     legal:module "core" ;
     legal:priority "High" ;
     legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
@@ -664,6 +745,20 @@ legal:matterValueRange a rdf:Property ;
     legal:answersQuestion "Do you take small claims? Is my matter big enough?" ;
     legal:module "core" ;
     legal:priority "Medium" ;
+    legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
+    legal:visibleTextRequired true .
+
+legal:mustProve a rdf:Property ;
+    rdfs:label "mustProve" ;
+    rdfs:comment "One thing the person bringing the claim must prove to win. Repeat the property for each one. Put it on the Service (the kind of claim), or on a DefinedTerm for one legal route (for example 'Negligence' or 'Strict liability') when a page gives more than one route. Name each element in the page's own words. Not for filing steps, defences or evidence to keep." ;
+    schema:domainIncludes schema:DefinedTerm,
+        schema:Service ;
+    schema:isPartOf <https://w3id.org/servicefacts/legal> ;
+    schema:rangeIncludes schema:DefinedTerm ;
+    legal:answersQuestion "What do I have to prove to win? Do I have a case?" ;
+    legal:dualPublishAs "WebPage.mentions for each element term" ;
+    legal:module "core" ;
+    legal:priority "High" ;
     legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
     legal:visibleTextRequired true .
 
@@ -703,6 +798,78 @@ legal:typicalDuration a rdf:Property ;
     legal:priority "Medium" ;
     legal:priorityEvidence "Hypothesis v0.1: from a review of law-firm service pages and the questions buyers ask. To be measured with AI prompt tracking." ;
     legal:visibleTextRequired true .
+
+legal:DamageTypes-disability a schema:DefinedTerm ;
+    schema:description "Lasting loss of the ability to work or do everyday activities." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Disability" ;
+    schema:termCode "disability" .
+
+legal:DamageTypes-disfigurement a schema:DefinedTerm ;
+    schema:description "Lasting scars or changes to how a person looks." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Scarring and disfigurement" ;
+    schema:termCode "disfigurement" .
+
+legal:DamageTypes-economic-damages a schema:DefinedTerm ;
+    schema:description "Money losses that can be counted, such as bills and lost pay." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Economic damages" ;
+    schema:termCode "economic-damages" .
+
+legal:DamageTypes-funeral-burial-expenses a schema:DefinedTerm ;
+    schema:description "The cost of a funeral and burial after a death." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Funeral and burial expenses" ;
+    schema:termCode "funeral-burial-expenses" .
+
+legal:DamageTypes-loss-of-consortium a schema:DefinedTerm ;
+    schema:description "Loss of the companionship and support of a spouse or family member." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Loss of consortium" ;
+    schema:termCode "loss-of-consortium" .
+
+legal:DamageTypes-loss-of-earning-capacity a schema:DefinedTerm ;
+    schema:description "Less ability to earn money in the future because of the injury." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Loss of earning capacity" ;
+    schema:termCode "loss-of-earning-capacity" .
+
+legal:DamageTypes-loss-of-enjoyment-of-life a schema:DefinedTerm ;
+    schema:description "Being less able to take part in and enjoy everyday life." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Loss of enjoyment of life" ;
+    schema:termCode "loss-of-enjoyment-of-life" .
+
+legal:DamageTypes-lost-income a schema:DefinedTerm ;
+    schema:description "Pay or earnings lost because of the injury." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Lost income" ;
+    schema:termCode "lost-income" .
+
+legal:DamageTypes-medical-expenses a schema:DefinedTerm ;
+    schema:description "The cost of medical care caused by the injury, past and future." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Medical expenses" ;
+    schema:termCode "medical-expenses" .
+
+legal:DamageTypes-mental-anguish a schema:DefinedTerm ;
+    schema:description "Emotional or psychological harm caused by the injury, such as fear, shock or anxiety." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Mental anguish" ;
+    schema:termCode "mental-anguish" .
+
+legal:DamageTypes-non-economic-damages a schema:DefinedTerm ;
+    schema:description "Losses that are not money but are paid for in money, such as pain and suffering." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Non-economic damages" ;
+    schema:termCode "non-economic-damages" .
+
+legal:DamageTypes-pain-and-suffering a schema:DefinedTerm ;
+    schema:description "Physical pain and suffering caused by the injury." ;
+    schema:inDefinedTermSet legal:DamageTypes ;
+    schema:name "Pain and suffering" ;
+    schema:termCode "pain-and-suffering" .
 
 legal:DisputeProcesses-adjudication a schema:DefinedTerm ;
     skos:broadMatch <http://www.wikidata.org/entity/Q357789> ;
@@ -768,6 +935,12 @@ legal:FeeArrangements-conditional-fee a schema:DefinedTerm ;
     schema:inDefinedTermSet legal:FeeArrangements ;
     schema:name "Conditional fee" ;
     schema:termCode "conditional-fee" .
+
+legal:FeeArrangements-contingency-fee a schema:DefinedTerm ;
+    schema:description "The lawyer is paid a share of the money recovered for the client, and is paid nothing for their work if no money is recovered." ;
+    schema:inDefinedTermSet legal:FeeArrangements ;
+    schema:name "Contingency fee" ;
+    schema:termCode "contingency-fee" .
 
 legal:FeeArrangements-fixed-fee a schema:DefinedTerm ;
     schema:description "One agreed price for a defined piece of work." ;
@@ -873,6 +1046,12 @@ legal:PracticeAreas-family a schema:DefinedTerm ;
     schema:name "Family law" ;
     schema:termCode "family" .
 
+legal:PracticeAreas-personal-injury a schema:DefinedTerm ;
+    schema:description "Law of claims for money when a person is hurt, or dies, because someone else did something wrong or was careless." ;
+    schema:inDefinedTermSet legal:PracticeAreas ;
+    schema:name "Personal injury law" ;
+    schema:termCode "personal-injury" .
+
 legal:PracticeAreas-wills-estates a schema:DefinedTerm ;
     schema:description "Law of wills, estate planning, probate and will disputes." ;
     schema:inDefinedTermSet legal:PracticeAreas ;
@@ -914,6 +1093,7 @@ legal:ProjectTypes a schema:DefinedTermSet ;
 legal:FeeArrangements a schema:DefinedTermSet ;
     schema:hasDefinedTerm legal:FeeArrangements-capped-fee,
         legal:FeeArrangements-conditional-fee,
+        legal:FeeArrangements-contingency-fee,
         legal:FeeArrangements-fixed-fee,
         legal:FeeArrangements-free-initial-consultation,
         legal:FeeArrangements-hourly-rate,
@@ -926,6 +1106,7 @@ legal:PracticeAreas a schema:DefinedTermSet ;
         legal:PracticeAreas-debt-recovery,
         legal:PracticeAreas-employment,
         legal:PracticeAreas-family,
+        legal:PracticeAreas-personal-injury,
         legal:PracticeAreas-wills-estates ;
     schema:name "Practice areas" .
 
@@ -951,13 +1132,28 @@ legal:PartyRoles a schema:DefinedTermSet ;
         legal:PartyRoles-supplier ;
     schema:name "Party roles" .
 
+legal:DamageTypes a schema:DefinedTermSet ;
+    schema:hasDefinedTerm legal:DamageTypes-disability,
+        legal:DamageTypes-disfigurement,
+        legal:DamageTypes-economic-damages,
+        legal:DamageTypes-funeral-burial-expenses,
+        legal:DamageTypes-loss-of-consortium,
+        legal:DamageTypes-loss-of-earning-capacity,
+        legal:DamageTypes-loss-of-enjoyment-of-life,
+        legal:DamageTypes-lost-income,
+        legal:DamageTypes-medical-expenses,
+        legal:DamageTypes-mental-anguish,
+        legal:DamageTypes-non-economic-damages,
+        legal:DamageTypes-pain-and-suffering ;
+    schema:name "Damage types" .
+
 <https://w3id.org/servicefacts/legal> a owl:Ontology,
         schema:CreativeWork ;
-    owl:versionIRI <https://w3id.org/servicefacts/legal/0.1> ;
-    owl:versionInfo "0.1" ;
+    owl:versionIRI <https://w3id.org/servicefacts/legal/0.2> ;
+    owl:versionInfo "0.2" ;
     schema:creativeWorkStatus "Draft" ;
-    schema:dateModified "2026-10-20" ;
-    schema:description "Draft. Facts buyers ask about legal services, and how to state and mark them up. Standard schema.org first; custom terms only where schema.org has no home. v0.1 was built for Australian building and construction law." ;
+    schema:dateModified "2026-11-24" ;
+    schema:description "Draft. Facts buyers ask about legal services, and how to state and mark them up. Standard schema.org first; custom terms only where schema.org has no home. v0.1 was built for Australian building and construction law. v0.2 adds US personal injury terms." ;
     schema:discussionUrl "https://github.com/wldm-gh/servicefacts/issues" ;
     schema:license "https://creativecommons.org/licenses/by/4.0/" ;
     schema:maintainer [ a schema:Organization ;
@@ -965,6 +1161,6 @@ legal:PartyRoles a schema:DefinedTermSet ;
             schema:name "WLDM" ;
             schema:url "https://wldm.io/" ] ;
     schema:name "Service Facts: Legal Services Profile" ;
-    schema:version "0.1" ;
+    schema:version "0.2" ;
     legal:propertyIndex [ ] .
 

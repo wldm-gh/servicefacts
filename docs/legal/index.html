@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Legal services vocabulary v0.1 | Service Facts</title>
+<title>Legal services vocabulary v0.2 | Service Facts</title>
 <meta name="description" content="Extra schema.org terms for law firms: who they act for, fees, dispute processes, forums, governing law and legal time limits.">
 <link rel="alternate" type="application/ld+json" href="legal.jsonld">
 <link rel="alternate" type="text/turtle" href="legal.ttl">
@@ -43,17 +43,17 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding-top:12px;color:v
 <main>
 
 <p class="meta"><a href="../">Service Facts</a> / Legal services</p>
-<h1>Legal services vocabulary <span class="badge">v0.1 draft</span></h1>
-<p class="meta">Version 0.1, 2026-10-20. Namespace <code>https://w3id.org/servicefacts/legal#</code>, prefix <code>legal:</code>.
-Files: <a href="legal.jsonld">JSON-LD</a> · <a href="legal.ttl">Turtle</a> · <a href="0.1/">frozen copy of v0.1</a></p>
+<h1>Legal services vocabulary <span class="badge">v0.2 draft</span></h1>
+<p class="meta">Version 0.2, 2026-11-24. Namespace <code>https://w3id.org/servicefacts/legal#</code>, prefix <code>legal:</code>.
+Files: <a href="legal.jsonld">JSON-LD</a> · <a href="legal.ttl">Turtle</a> · <a href="0.2/">frozen copy of v0.2</a></p>
 
 <div class="callout">
 <p><strong>Start here.</strong> schema.org cannot say some things buyers ask a law firm: who the firm acts for, how it charges,
 which process and tribunal a matter goes through, which law governs it, and the legal time limits.
-This vocabulary adds 16 properties, 1 class and 5 value lists for those facts.
+This vocabulary adds 23 properties, 2 classes and 6 value lists for those facts.
 Use standard schema.org first. Use these terms only where schema.org has no home.</p>
 <p><strong>Status: draft.</strong> Version 0.x can still change. Term IDs never change and are never deleted.
-Version 0.1 was built for Australian building and construction law.</p>
+Version 0.1 was built for Australian building and construction law. Version 0.2 adds US personal injury terms.</p>
 </div>
 
 <h2 id="how-to-use">How to use it on a page</h2>
@@ -83,13 +83,20 @@ Version 0.1 was built for Australian building and construction law.</p>
 <tr><td><a href="#appliesToStep"><code>legal:appliesToStep</code></a></td><td>TimeLimit</td><td>DefinedTerm</td><td>High</td><td>(part of a time limit)</td></tr>
 <tr><td><a href="#timeAllowed"><code>legal:timeAllowed</code></a></td><td>TimeLimit</td><td>QuantitativeValue</td><td>High</td><td>(part of a time limit)</td></tr>
 <tr><td><a href="#countedFrom"><code>legal:countedFrom</code></a></td><td>TimeLimit</td><td>DefinedTerm</td><td>High</td><td>(part of a time limit)</td></tr>
-<tr><td><a href="#legalSource"><code>legal:legalSource</code></a></td><td>TimeLimit</td><td>Legislation</td><td>High</td><td>(part of a time limit)</td></tr>
+<tr><td><a href="#legalSource"><code>legal:legalSource</code></a></td><td>TimeLimit, DamagesCap</td><td>Legislation</td><td>High</td><td>(part of a time limit or a damages cap)</td></tr>
 <tr><td><a href="#consequenceIfMissed"><code>legal:consequenceIfMissed</code></a></td><td>TimeLimit</td><td>Text</td><td>Medium</td><td>What happens if I miss the deadline?</td></tr>
 <tr><td><a href="#typicalDuration"><code>legal:typicalDuration</code></a></td><td>Service</td><td>Duration, QuantitativeValue</td><td>Medium</td><td>How long will it take?</td></tr>
 <tr><td><a href="#matterValueRange"><code>legal:matterValueRange</code></a></td><td>Service</td><td>MonetaryAmount</td><td>Medium</td><td>Do you take small claims? Is my matter big enough?</td></tr>
 <tr><td><a href="#dateAdmitted"><code>legal:dateAdmitted</code></a></td><td>Person, EducationalOccupationalCredential</td><td>Date</td><td>High</td><td>How experienced is the lawyer?</td></tr>
 <tr><td><a href="#contractForm"><code>legal:contractForm</code></a></td><td>Service, LegalService, Person</td><td>CreativeWork</td><td>High</td><td>Can you review my HIA / Master Builders / AS 4000 contract?</td></tr>
 <tr><td><a href="#projectType"><code>legal:projectType</code></a></td><td>Service</td><td>DefinedTerm</td><td>Medium</td><td>Do you handle home builds, renovations, apartments or commercial projects?</td></tr>
+<tr><td><a href="#mustProve"><code>legal:mustProve</code></a></td><td>Service, DefinedTerm</td><td>DefinedTerm</td><td>High</td><td>What do I have to prove to win? Do I have a case?</td></tr>
+<tr><td><a href="#injuryThreshold"><code>legal:injuryThreshold</code></a></td><td>Service</td><td>DefinedTerm</td><td>Medium</td><td>Is my injury serious enough to sue?</td></tr>
+<tr><td><a href="#damagesAvailable"><code>legal:damagesAvailable</code></a></td><td>Service</td><td>DefinedTerm</td><td>Medium</td><td>What can I get compensation for? Can I sue for pain and suffering?</td></tr>
+<tr><td><a href="#damagesCap"><code>legal:damagesCap</code></a></td><td>Service</td><td>DamagesCap</td><td>Medium</td><td>Is there a limit on how much I can get? Is there a cap on pain and suffering damages?</td></tr>
+<tr><td><a href="#appliesToDamageType"><code>legal:appliesToDamageType</code></a></td><td>DamagesCap</td><td>DefinedTerm</td><td>Medium</td><td>(part of a damages cap)</td></tr>
+<tr><td><a href="#capAmount"><code>legal:capAmount</code></a></td><td>DamagesCap</td><td>MonetaryAmount</td><td>Medium</td><td>(part of a damages cap)</td></tr>
+<tr><td><a href="#isCapped"><code>legal:isCapped</code></a></td><td>DamagesCap</td><td>Boolean</td><td>Medium</td><td>(part of a damages cap)</td></tr>
 </table></div>
 <div class="term" id="actsFor"><h3><code>legal:actsFor</code></h3>
 <p>A party role the firm or lawyer acts for in this kind of matter. Value from the PartyRoles list.</p><dl>
@@ -182,13 +189,13 @@ Version 0.1 was built for Australian building and construction law.</p>
 
 </dl></div>
 <div class="term" id="legalSource"><h3><code>legal:legalSource</code></h3>
-<p>The Act or section that sets the time limit. Use a Legislation node for the section, isPartOf the Act.</p><dl>
+<p>The Act or section that sets the time limit or the damages cap. Use a Legislation node for the section, isPartOf the Act.</p><dl>
 <dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#legalSource</code></dd>
-<dt>Goes on</dt><dd><a href="#TimeLimit"><code>legal:TimeLimit</code></a></dd>
+<dt>Goes on</dt><dd><a href="#TimeLimit"><code>legal:TimeLimit</code></a>, <a href="#DamagesCap"><code>legal:DamagesCap</code></a></dd>
 <dt>Value</dt><dd><a href="https://schema.org/Legislation"><code>Legislation</code></a></dd>
 <dt>Priority</dt><dd>High</dd>
 <dt>Module</dt><dd>core</dd>
-<dt>Buyer question</dt><dd>(part of a time limit)</dd>
+<dt>Buyer question</dt><dd>(part of a time limit or a damages cap)</dd>
 
 </dl></div>
 <div class="term" id="consequenceIfMissed"><h3><code>legal:consequenceIfMissed</code></h3>
@@ -251,6 +258,76 @@ Version 0.1 was built for Australian building and construction law.</p>
 <dt>Buyer question</dt><dd>Do you handle home builds, renovations, apartments or commercial projects?</dd>
 
 </dl></div>
+<div class="term" id="mustProve"><h3><code>legal:mustProve</code></h3>
+<p>One thing the person bringing the claim must prove to win. Repeat the property for each one. Put it on the Service (the kind of claim), or on a DefinedTerm for one legal route (for example &#x27;Negligence&#x27; or &#x27;Strict liability&#x27;) when a page gives more than one route. Name each element in the page&#x27;s own words. Not for filing steps, defences or evidence to keep.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#mustProve</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a>, <a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>High</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>What do I have to prove to win? Do I have a case?</dd>
+<dt>Also publish as</dt><dd>WebPage.mentions for each element term</dd>
+</dl></div>
+<div class="term" id="injuryThreshold"><h3><code>legal:injuryThreshold</code></h3>
+<p>A level of injury the law requires before this kind of claim can be brought, or before one kind of damages can be claimed in it. Say which in the term&#x27;s description. If there are several values, each is one level that qualifies on its own. Leave the property off where the law sets no threshold.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#injuryThreshold</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>personal-injury</dd>
+<dt>Buyer question</dt><dd>Is my injury serious enough to sue?</dd>
+<dt>Also publish as</dt><dd>WebPage.mentions for the term; citation for the statute</dd>
+</dl></div>
+<div class="term" id="damagesAvailable"><h3><code>legal:damagesAvailable</code></h3>
+<p>A kind of money compensation that can be claimed in this kind of case. Value from the DamageTypes list. Repeat for each kind. Not for insurance benefits paid regardless of fault, and not for amounts or caps (see damagesCap).</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#damagesAvailable</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>What can I get compensation for? Can I sue for pain and suffering?</dd>
+<dt>Also publish as</dt><dd>WebPage.mentions</dd>
+</dl></div>
+<div class="term" id="damagesCap"><h3><code>legal:damagesCap</code></h3>
+<p>What the law says about a limit (a cap) on one kind of damages in this kind of case: the limit, or that there is none. Repeat for each cap, for example a lower and a higher cap. Not for fee caps, insurance policy limits or benefit limits, and not for what a case is worth.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#damagesCap</code></dd>
+<dt>Goes on</dt><dd><a href="https://schema.org/Service"><code>Service</code></a></dd>
+<dt>Value</dt><dd><a href="#DamagesCap"><code>legal:DamagesCap</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>Is there a limit on how much I can get? Is there a cap on pain and suffering damages?</dd>
+<dt>Also publish as</dt><dd>WebPage.citation for the law that sets the cap</dd>
+</dl></div>
+<div class="term" id="appliesToDamageType"><h3><code>legal:appliesToDamageType</code></h3>
+<p>The kind of damages the cap limits. Value from the DamageTypes list.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#appliesToDamageType</code></dd>
+<dt>Goes on</dt><dd><a href="#DamagesCap"><code>legal:DamagesCap</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/DefinedTerm"><code>DefinedTerm</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>(part of a damages cap)</dd>
+
+</dl></div>
+<div class="term" id="capAmount"><h3><code>legal:capAmount</code></h3>
+<p>The maximum amount. MonetaryAmount with value and currency, and validFrom / validThrough when the amount changes from year to year. Leave it off when the page states no amount.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#capAmount</code></dd>
+<dt>Goes on</dt><dd><a href="#DamagesCap"><code>legal:DamagesCap</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/MonetaryAmount"><code>MonetaryAmount</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>(part of a damages cap)</dd>
+
+</dl></div>
+<div class="term" id="isCapped"><h3><code>legal:isCapped</code></h3>
+<p>false when the page says the law sets no limit on this kind of damages. true when the page says there is a limit. Leave it off when the page does not say.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#isCapped</code></dd>
+<dt>Goes on</dt><dd><a href="#DamagesCap"><code>legal:DamagesCap</code></a></dd>
+<dt>Value</dt><dd><a href="https://schema.org/Boolean"><code>Boolean</code></a></dd>
+<dt>Priority</dt><dd>Medium</dd>
+<dt>Module</dt><dd>core</dd>
+<dt>Buyer question</dt><dd>(part of a damages cap)</dd>
+
+</dl></div>
 <h2 id="classes">Classes</h2>
 <div class="term" id="TimeLimit"><h3><code>legal:TimeLimit</code></h3>
 <p>A legal time limit: a step that must be done within a set time, counted from a set event, under a named law.</p><dl>
@@ -258,6 +335,13 @@ Version 0.1 was built for Australian building and construction law.</p>
 <dt>Subclass of</dt><dd><a href="https://schema.org/StructuredValue"><code>StructuredValue</code></a></dd>
 <dt>Value of</dt><dd><a href="#hasTimeLimit"><code>legal:hasTimeLimit</code></a></dd>
 <dt>Parts</dt><dd><a href="#appliesToStep"><code>legal:appliesToStep</code></a>, <a href="#timeAllowed"><code>legal:timeAllowed</code></a>, <a href="#countedFrom"><code>legal:countedFrom</code></a>, <a href="#legalSource"><code>legal:legalSource</code></a>, <a href="#consequenceIfMissed"><code>legal:consequenceIfMissed</code></a></dd>
+</dl></div>
+<div class="term" id="DamagesCap"><h3><code>legal:DamagesCap</code></h3>
+<p>What the law says about a limit on one kind of damages in one kind of case: a maximum amount for a stated period, under a named law, or that there is no limit.</p><dl>
+<dt>ID</dt><dd><code>https://w3id.org/servicefacts/legal#DamagesCap</code></dd>
+<dt>Subclass of</dt><dd><a href="https://schema.org/StructuredValue"><code>StructuredValue</code></a></dd>
+<dt>Value of</dt><dd><a href="#damagesCap"><code>legal:damagesCap</code></a></dd>
+<dt>Parts</dt><dd><a href="#legalSource"><code>legal:legalSource</code></a>, <a href="#appliesToDamageType"><code>legal:appliesToDamageType</code></a>, <a href="#capAmount"><code>legal:capAmount</code></a>, <a href="#isCapped"><code>legal:isCapped</code></a></dd>
 </dl></div>
 <h2 id="value-lists">Value lists</h2><p>Each value is a <code>DefinedTerm</code> with its own ID. Point to it with <code>{"@id": "…"}</code>. Matches to outside vocabularies say how close they are (SKOS). Only an exact match may become <code>sameAs</code> on a page.</p>
 <h3 id="PartyRoles" class="term" style="border:0;padding:0">Party roles <code>legal:PartyRoles</code></h3><div class="tablewrap"><table><tr><th>Value ID</th><th>Name</th><th>Meaning</th><th>Matches</th></tr>
@@ -276,6 +360,7 @@ Version 0.1 was built for Australian building and construction law.</p>
 <tr id="FeeArrangements-hourly-rate"><td><code>legal:FeeArrangements-hourly-rate</code></td><td>Hourly rate</td><td>Charged by time spent, at a stated hourly rate.</td><td></td></tr>
 <tr id="FeeArrangements-capped-fee"><td><code>legal:FeeArrangements-capped-fee</code></td><td>Capped fee</td><td>Charged by time, up to an agreed maximum.</td><td></td></tr>
 <tr id="FeeArrangements-conditional-fee"><td><code>legal:FeeArrangements-conditional-fee</code></td><td>Conditional fee</td><td>Fees payable only on a successful outcome, where the law allows it.</td><td></td></tr>
+<tr id="FeeArrangements-contingency-fee"><td><code>legal:FeeArrangements-contingency-fee</code></td><td>Contingency fee</td><td>The lawyer is paid a share of the money recovered for the client, and is paid nothing for their work if no money is recovered.</td><td></td></tr>
 <tr id="FeeArrangements-free-initial-consultation"><td><code>legal:FeeArrangements-free-initial-consultation</code></td><td>Free initial consultation</td><td>A first meeting at no charge.</td><td></td></tr>
 </table></div>
 <h3 id="DisputeProcesses" class="term" style="border:0;padding:0">Dispute processes <code>legal:DisputeProcesses</code></h3><div class="tablewrap"><table><tr><th>Value ID</th><th>Name</th><th>Meaning</th><th>Matches</th></tr>
@@ -301,6 +386,21 @@ Version 0.1 was built for Australian building and construction law.</p>
 <tr id="PracticeAreas-employment"><td><code>legal:PracticeAreas-employment</code></td><td>Employment law</td><td>Law of employment contracts, dismissal and workplace rights.</td><td></td></tr>
 <tr id="PracticeAreas-business-commercial"><td><code>legal:PracticeAreas-business-commercial</code></td><td>Business and commercial law</td><td>Law of buying, selling and running a business, and commercial contracts.</td><td></td></tr>
 <tr id="PracticeAreas-debt-recovery"><td><code>legal:PracticeAreas-debt-recovery</code></td><td>Debt recovery</td><td>Recovering money owed, by demand, negotiation or court action.</td><td></td></tr>
+<tr id="PracticeAreas-personal-injury"><td><code>legal:PracticeAreas-personal-injury</code></td><td>Personal injury law</td><td>Law of claims for money when a person is hurt, or dies, because someone else did something wrong or was careless.</td><td></td></tr>
+</table></div>
+<h3 id="DamageTypes" class="term" style="border:0;padding:0">Damage types <code>legal:DamageTypes</code></h3><div class="tablewrap"><table><tr><th>Value ID</th><th>Name</th><th>Meaning</th><th>Matches</th></tr>
+<tr id="DamageTypes-economic-damages"><td><code>legal:DamageTypes-economic-damages</code></td><td>Economic damages</td><td>Money losses that can be counted, such as bills and lost pay.</td><td></td></tr>
+<tr id="DamageTypes-non-economic-damages"><td><code>legal:DamageTypes-non-economic-damages</code></td><td>Non-economic damages</td><td>Losses that are not money but are paid for in money, such as pain and suffering.</td><td></td></tr>
+<tr id="DamageTypes-medical-expenses"><td><code>legal:DamageTypes-medical-expenses</code></td><td>Medical expenses</td><td>The cost of medical care caused by the injury, past and future.</td><td></td></tr>
+<tr id="DamageTypes-lost-income"><td><code>legal:DamageTypes-lost-income</code></td><td>Lost income</td><td>Pay or earnings lost because of the injury.</td><td></td></tr>
+<tr id="DamageTypes-loss-of-earning-capacity"><td><code>legal:DamageTypes-loss-of-earning-capacity</code></td><td>Loss of earning capacity</td><td>Less ability to earn money in the future because of the injury.</td><td></td></tr>
+<tr id="DamageTypes-pain-and-suffering"><td><code>legal:DamageTypes-pain-and-suffering</code></td><td>Pain and suffering</td><td>Physical pain and suffering caused by the injury.</td><td></td></tr>
+<tr id="DamageTypes-mental-anguish"><td><code>legal:DamageTypes-mental-anguish</code></td><td>Mental anguish</td><td>Emotional or psychological harm caused by the injury, such as fear, shock or anxiety.</td><td></td></tr>
+<tr id="DamageTypes-loss-of-enjoyment-of-life"><td><code>legal:DamageTypes-loss-of-enjoyment-of-life</code></td><td>Loss of enjoyment of life</td><td>Being less able to take part in and enjoy everyday life.</td><td></td></tr>
+<tr id="DamageTypes-disfigurement"><td><code>legal:DamageTypes-disfigurement</code></td><td>Scarring and disfigurement</td><td>Lasting scars or changes to how a person looks.</td><td></td></tr>
+<tr id="DamageTypes-disability"><td><code>legal:DamageTypes-disability</code></td><td>Disability</td><td>Lasting loss of the ability to work or do everyday activities.</td><td></td></tr>
+<tr id="DamageTypes-loss-of-consortium"><td><code>legal:DamageTypes-loss-of-consortium</code></td><td>Loss of consortium</td><td>Loss of the companionship and support of a spouse or family member.</td><td></td></tr>
+<tr id="DamageTypes-funeral-burial-expenses"><td><code>legal:DamageTypes-funeral-burial-expenses</code></td><td>Funeral and burial expenses</td><td>The cost of a funeral and burial after a death.</td><td></td></tr>
 </table></div>
 <h2 id="schema-org">schema.org properties this profile uses</h2><p>Use these first. The priority says how much buyers need the fact.</p><div class="tablewrap"><table><tr><th>Property</th><th>On</th><th>Priority</th><th>Note</th></tr>
 <tr><td><a href="https://schema.org/name"><code>name</code></a></td><td>LegalService, Service, Person, Legislation, GovernmentOrganization, DefinedTerm</td><td>High</td><td>Exact name, same everywhere.</td></tr>
@@ -358,7 +458,7 @@ Version 0.1 was built for Australian building and construction law.</p>
 <tr><td><a href="https://schema.org/inDefinedTermSet"><code>inDefinedTermSet</code></a></td><td>DefinedTerm</td><td>High</td><td></td></tr>
 <tr><td><a href="https://schema.org/termCode"><code>termCode</code></a></td><td>DefinedTerm</td><td>Low</td><td></td></tr>
 <tr><td><a href="https://schema.org/price"><code>price</code></a></td><td>Offer</td><td>High</td><td>Only when the firm publishes the price.</td></tr>
-<tr><td><a href="https://schema.org/priceCurrency"><code>priceCurrency</code></a></td><td>Offer</td><td>High</td><td>AUD.</td></tr>
+<tr><td><a href="https://schema.org/priceCurrency"><code>priceCurrency</code></a></td><td>Offer</td><td>High</td><td>ISO 4217 code, e.g. AUD or USD.</td></tr>
 <tr><td><a href="https://schema.org/itemOffered"><code>itemOffered</code></a></td><td>Offer</td><td>High</td><td></td></tr>
 <tr><td><a href="https://schema.org/priceSpecification"><code>priceSpecification</code></a></td><td>Offer</td><td>Medium</td><td>Hourly rate as UnitPriceSpecification with unitText &#x27;hour&#x27;.</td></tr>
 </table></div>
@@ -373,6 +473,7 @@ Version 0.1 was built for Australian building and construction law.</p>
 </table></div>
 <h2 id="versions">Versions and changes</h2>
 <div class="tablewrap"><table><tr><th>Version</th><th>Date</th><th>Change</th></tr>
+<tr><td><a href="0.2/">0.2</a></td><td>2026-11-24</td><td>US personal injury terms: what a claimant must prove, injury threshold, damage types, damages cap, contingency fee, personal injury practice area.</td></tr>
 <tr><td><a href="0.1/">0.1</a></td><td>2026-10-20</td><td>First public draft.</td></tr>
 </table></div>
 <p>Rules: a term ID is never changed or deleted. A replaced term is marked <code>owl:deprecated</code> and

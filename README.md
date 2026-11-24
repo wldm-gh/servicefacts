@@ -12,7 +12,7 @@ schema.org describes businesses well, but it cannot say many facts that decide a
 
 | Industry | Namespace | Version | Docs | Files |
 |---|---|---|---|---|
-| Legal services | `https://w3id.org/servicefacts/legal#` (prefix `legal:`) | 0.1, draft | [docs](https://wldm-gh.github.io/servicefacts/legal/) | [JSON-LD](docs/legal/legal.jsonld), [Turtle](docs/legal/legal.ttl) |
+| Legal services | `https://w3id.org/servicefacts/legal#` (prefix `legal:`) | 0.2, draft | [docs](https://wldm-gh.github.io/servicefacts/legal/) | [JSON-LD](docs/legal/legal.jsonld), [Turtle](docs/legal/legal.ttl) |
 
 Version 0.x is a draft and can still change. Term IDs never change and are never deleted.
 
